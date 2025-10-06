@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" type="images/png" href="images/icon-logo.png">
+        <title>Bootstrap demo</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+        <link rel="stylesheet" href="style.css">
+        <style>
+
+        </style>
+    </head>
+
+    <body class="text-white">
+        <!-- <h1>Hello, world!</h1> -->
+
+        <!-- Navbar -->
+        <div class="blur-biru"></div>
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <div class="container">
+                <!-- Brand -->
+                <a class="navbar-brand d-flex align-items-center" href="index.html">
+                    <img src="images/icon-logo.png" alt="Logo">
+                    <span class="brand-text">LAMINAR <span class="flow">FLOW</span></span>
+                </a>
+
+                <!-- Toggler -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Nav Menu (kanan) -->
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Game</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">About Us</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Update</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Showcase</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- carousel -->
+        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                    aria-label="Slide 2"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="https://picsum.photos/1200/400?random=1" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item active">
+                    <img src="images/baner.png" class="d-block w-100" alt="...">
+                </div>
+                <!-- <div class="carousel-item">
+                    <img src="https://picsum.photos/1200/400?random=2" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="https://picsum.photos/1200/400?random=3" class="d-block w-100" alt="...">
+                </div> -->
+
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+
+        <!-- Update Section -->
+        <section class="section-content mt-4">
+            <h2 class="mb-5">Update</h2>
+
+            <div class="update-card">
+                <img src="images/panel.png" alt="LROC">
+                <div class="update-content">
+                    <h3>Let’s Restore Our Coast</h3>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                        tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse
+                        ultrices gravida.
+                    </p>
+                    <span class="date">09-10-2024</span>
+                </div>
+            </div>
+
+            <div class="update-card">
+                <img src="images/panel.png" alt="LROC">
+                <div class="update-content">
+                    <h3>Let’s Restore Our Coast</h3>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                        tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse
+                        ultrices gravida.
+                    </p>
+                    <span class="date">09-10-2024</span>
+                </div>
+            </div>
+
+        </section>
+
+        <section class="showcase-section">
+            <img class="showcase-bg" src="images/border.png" alt="Panel Background">
+            <div class="">
+                <!-- <img class="showcase-bg" src="images/border.png" alt="Panel Background"> -->
+                <h2 class=" section-title">Showcase</h2>
+                <div class="showcase-grid">
+                    <div class="showcase-card">
+                        <img src="images/showcase1.png" alt="Showcase 1">
+                    </div>
+                    <div class="showcase-card">
+                        <img src="images/showcase2.png" alt="Showcase 2">
+                    </div>
+                    <div class="showcase-card">
+                        <img src="images/showcase3.png" alt="Showcase 3">
+                    </div>
+                </div>
+
+                <div class="showcase-more text-center">
+                    <a href="#">More Showcase <span class="arrow">»</span></a>
+                </div>
+            </div>
+            <!-- <h2>Showcase</h2> -->
+        </section>
+
+
+        <!-- Profile Section -->
+        <section id="profile" class="section-content mt-4">
+            <div class="">
+                <h2 class="section-title">Profile</h2>
+                <p class="profile-text pt-2 mb-5">
+                    Laminar Flow dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+                    et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Ipsum dolor sit amet, consectetur
+                    adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliquamet, consectetur
+                    adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vestibulum
+                    posuere porttitor justo id pellentesque. Proin id lacus feugiat, posuere erat sit amet, commodo
+                    ipsum. Donec pellentesque vestibulum metus.
+
+                </p>
+            </div>
+        </section>
+
+        <!-- Footer  -->
+        <footer class="footer mt-5">
+            <div class="footer-logo d-flex align-items-center">
+                <img src="images/icon-logo.png" alt="Logo">
+                <h2 class="brand-text">LAMINAR <span class="flow">FLOW</span></h2>
+            </div>
+
+
+            <ul class="footer-nav">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Game</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Community</a></li>
+                <li><a href="#">Showcase</a></li>
+            </ul>
+
+            <hr>
+
+            <p class="footer-text">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse
+                ultrices gravida. Ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliquam.
+            </p>
+
+            <div class="footer-social">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fas fa-gamepad"></i></a>
+            </div>
+        </footer>
+
+
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
+        </script>
+    </body>
+
+</html>
