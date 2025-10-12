@@ -10,7 +10,7 @@ body {
     /* biar nutup layar */
 }
 
-.navbar {}
+/* .navbar {} */
 
 /* Navbar Brand */
 .navbar-brand {
@@ -41,7 +41,7 @@ body {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    text-fill-color: transparent;
+    /* text-fill-color: transparent; */
 }
 
 /* Nav links */
@@ -112,6 +112,9 @@ body {
 }
 
 .update-card {
+    text-decoration: none;
+    color: inherit;
+    /* pakai warna teks dari parent (putih) */
     display: flex;
     align-items: flex-start;
     background: rgba(255, 255, 255, 0.05);
@@ -119,6 +122,29 @@ body {
     margin-bottom: 1.5rem;
     padding: 1rem;
     gap: 1rem;
+}
+
+.update-card h3,
+.update-card p,
+.update-card .date {
+    color: inherit;
+}
+
+.link-card {
+    text-decoration: none;
+    color: inherit;
+}
+
+.link-card:hover {
+    color: inherit;
+}
+
+
+/* Tambahkan efek hover opsional */
+.update-card:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: scale(1.01);
+    transition: 0.3s;
 }
 
 .update-card img {
@@ -303,7 +329,7 @@ body {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    text-fill-color: transparent;
+    /* text-fill-color: transparent; */
 }
 
 .footer-nav {
@@ -610,6 +636,7 @@ body {
 }
 
 /* ---------- Banner ---------- */
+
 .game-detail .game-banner {
     position: relative;
     height: 320px;
