@@ -5,16 +5,14 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="icon" type="images/png" href="images/icon-logo.png">
-        <title>Game Section</title>
+        <title>LROC</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
             integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
         <link rel="stylesheet" href="style.css">
-        <style>
-
-        </style>
     </head>
 
     <body>
+        <!-- Navbar -->
         <div class="blur-biru"></div>
         <nav class="navbar navbar-expand-lg fixed-top">
             <div class="container">
@@ -36,7 +34,7 @@
                         <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="game.html">Game</a></li>
                         <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
-                        <li class="nav-item"><a class="nav-link" href="update.html">Update</a></li>
+                        <li class="nav-item"><a class="nav-link" href="about.html">Update</a></li>
                         <li class="nav-item"><a class="nav-link" href="showcase.html">Showcase</a></li>
                     </ul>
                 </div>
@@ -44,52 +42,73 @@
         </nav>
         <section class="game-parallax">
             <div class="parallax-overlay">
-                <h1>Our Games</h1>
-                <p>Koleksi game terbaik dari tim Laminar Flow Studio.</p>
+                <h1>Gebuk Hama</h1>
+                <p>bkl.</p>
+            </div>
+        </section>
+        <section class="game-detail">
+
+
+            <!-- Konten Utama -->
+            <div class="game-detail-content">
+                <div class="game-left">
+                    <h1>Gebuk Hama</h1>
+
+                    <!-- Video Preview -->
+                    <div class="game-video">
+                        <video controls poster="images/logo.png">
+                            <source src="video/rbx.mp4" type="video/mp4">
+                        </video>
+                    </div>
+
+                    <!-- Gallery Screenshot -->
+                    <div class="game-gallery">
+                        <img src="images/showcase1.png" alt="Gameplay 1">
+                        <img src="images/showcase2.png" alt="Gameplay 2">
+                        <img src="images/showcase3.png" alt="Gameplay 3">
+                    </div>
+
+                    <!-- Deskripsi + Sidebar -->
+                    <div class="game-bottom">
+                        <div class="game-desc">
+                            <h2>About This Game</h2>
+                            <p>
+                                <strong>Gebuk Hama</strong> adalah game gebuk gebukin hama. pokoknya coba aja main. cara
+                                mainnya, pertama lo ke kotak coklat dulu, buat tanam tanaman, abis itu tekan start. kalo
+                                ada lingkaran merah, berarti itu hama. klik kanan buat gebukin, tar dia kabur. kalo dah
+                                abis, bakal ada next wavenya. mainin dah tuh ampe kelar.
+                            </p>
+
+                            <div class="game-buttons">
+                                <a href="gaming.html">
+
+                                    <button class="btn-play">Play</button>
+                                </a>
+                                <button class="btn-download">Download</button>
+                            </div>
+                        </div>
+
+                        <!-- Sidebar -->
+                        <aside class="game-sidebar">
+                            <h3>Information</h3>
+                            <ul>
+                                <li><span>Update:</span> 09-10-2024</li>
+                                <li><span>Published:</span> 08-10-2024</li>
+                                <li><span>Status:</span> In Development</li>
+                                <li><span>Genre:</span> Simulation</li>
+                                <li><span>Platform:</span> Windows 10+</li>
+                                <li><span>Size:</span> 220 MB</li>
+                            </ul>
+                        </aside>
+                    </div>
+                </div>
             </div>
         </section>
 
 
-        <section class="game-catalogue">
-            <h2 class="section-title">Our Games</h2>
-
-            <div class="game-grid">
-                <div class="game-card">
-                    <img src="images/panel.png" alt="LROC" class="game-thumb">
-
-                    <div class="game-info">
-                        <h3>Let’s Restore Our Coast</h3>
-                        <p><strong>Genre:</strong> Simulation, Exploration, Education</p>
-                        <p><strong>Platform:</strong> Windows 10+</p>
-                        <a href="detail-game.html" class="btn-details">Details</a>
-                    </div>
-                </div>
-                <div class="game-card">
-                    <img src="images/showcase2.png" alt="LROC" class="game-thumb">
-
-                    <div class="game-info">
-                        <h3>Gebuk Hama</h3>
-                        <!-- <p><strong>Genre:</strong> Simulation, Exploration, Education</p> -->
-                        <p><strong>Platform:</strong> Windows 10+</p>
-                        <a href="detail-game2.html" class="btn-details">Details</a>
-                    </div>
-                </div>
-                <div class="game-card">
-                    <img src="images/showcase3.png" alt="LROC" class="game-thumb">
-
-                    <div class="game-info">
-                        <h3>Let’s Restore Our Coast</h3>
-                        <p><strong>Genre:</strong> Simulation, Exploration, Education</p>
-                        <p><strong>Platform:</strong> Windows 10+</p>
-                        <a href="detail-game.html" class="btn-details">Details</a>
-                    </div>
-                </div>
-                <!-- Tambahkan card lainnya di sini -->
-            </div>
-        </section>
 
 
-
+        <!-- Footer  -->
         <!-- Footer  -->
         <footer class="footer mt-5">
             <div class="footer-logo d-flex align-items-center">
