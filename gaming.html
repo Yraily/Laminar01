@@ -1,127 +1,204 @@
 <!DOCTYPE html>
 <html lang="en-us">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Unity Web Player | DefensePlants</title>
-    <link rel="shortcut icon" href="TemplateData/favicon.ico">
-    <link rel="stylesheet" href="TemplateData/style.css">
-  </head>
-  <body>
-    <div id="unity-container" class="unity-desktop">
-      <canvas id="unity-canvas" width=960 height=600 tabindex="-1"></canvas>
-      <div id="unity-loading-bar">
-        <div id="unity-logo"></div>
-        <div id="unity-progress-bar-empty">
-          <div id="unity-progress-bar-full"></div>
-        </div>
-      </div>
-      <div id="unity-warning"> </div>
-      <div id="unity-footer">
-        <div id="unity-logo-title-footer"></div>
-        <div id="unity-fullscreen-button"></div>
-        <div id="unity-build-title">DefensePlants</div>
-      </div>
-    </div>
-    <script>
-      var canvas = document.querySelector("#unity-canvas");
 
-      // Shows a temporary message banner/ribbon for a few seconds, or
-      // a permanent error message on top of the canvas if type=='error'.
-      // If type=='warning', a yellow highlight color is used.
-      // Modify or remove this function to customize the visually presented
-      // way that non-critical warnings and error messages are presented to the
-      // user.
-      function unityShowBanner(msg, type) {
-        var warningBanner = document.querySelector("#unity-warning");
-        function updateBannerVisibility() {
-          warningBanner.style.display = warningBanner.children.length ? 'block' : 'none';
-        }
-        var div = document.createElement('div');
-        div.innerHTML = msg;
-        warningBanner.appendChild(div);
-        if (type == 'error') div.style = 'background: red; padding: 10px;';
-        else {
-          if (type == 'warning') div.style = 'background: yellow; padding: 10px;';
-          setTimeout(function() {
-            warningBanner.removeChild(div);
-            updateBannerVisibility();
-          }, 5000);
-        }
-        updateBannerVisibility();
-      }
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>Unity Web Player | DefensePlants</title>
+        <link rel="shortcut icon" href="TemplateData/favicon.ico">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+        <link rel="stylesheet" href="TemplateData/gaming.css">
+        <link rel="stylesheet" href="style.css">
+    </head>
 
-      var buildUrl = "Build";
-      var loaderUrl = buildUrl + "/plantbaru1.loader.js";
-      var config = {
-        arguments: [],
-        dataUrl: buildUrl + "/plantbaru1.data",
-        frameworkUrl: buildUrl + "/plantbaru1.framework.js",
-        codeUrl: buildUrl + "/plantbaru1.wasm",
-        streamingAssetsUrl: "StreamingAssets",
-        companyName: "DefaultCompany",
-        productName: "DefensePlants",
-        productVersion: "1.0",
-        showBanner: unityShowBanner,
-      };
+    <body>
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <div class="container">
+                <!-- Brand -->
+                <a class="navbar-brand d-flex align-items-center" href="index.html">
+                    <img src="images/icon-logo.png" alt="Logo">
+                    <span class="brand-text">LAMINAR <span class="flow">FLOW</span></span>
+                </a>
 
-      // By default, Unity keeps WebGL canvas render target size matched with
-      // the DOM size of the canvas element (scaled by window.devicePixelRatio)
-      // Set this to false if you want to decouple this synchronization from
-      // happening inside the engine, and you would instead like to size up
-      // the canvas DOM size and WebGL render target sizes yourself.
-      // config.matchWebGLToCanvasSize = false;
+                <!-- Toggler -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-      // If you would like all file writes inside Unity Application.persistentDataPath
-      // directory to automatically persist so that the contents are remembered when
-      // the user revisits the site the next time, uncomment the following line:
-      // config.autoSyncPersistentDataPath = true;
-      // This autosyncing is currently not the default behavior to avoid regressing
-      // existing user projects that might rely on the earlier manual
-      // JS_FileSystem_Sync() behavior, but in future Unity version, this will be
-      // expected to change.
+                <!-- Nav Menu (kanan) -->
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="game.html">Game</a></li>
+                        <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+                        <li class="nav-item"><a class="nav-link" href="update.html">Update</a></li>
+                        <li class="nav-item"><a class="nav-link" href="showcase.html">Showcase</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <section class="container">
 
-      if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
-        // Mobile device style: fill the whole browser client area with the game canvas:
-
-        var meta = document.createElement('meta');
-        meta.name = 'viewport';
-        meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
-        document.getElementsByTagName('head')[0].appendChild(meta);
-        document.querySelector("#unity-container").className = "unity-mobile";
-        canvas.className = "unity-mobile";
-
-        // To lower canvas resolution on mobile devices to gain some
-        // performance, uncomment the following line:
-        // config.devicePixelRatio = 1;
+            <div id="unity-container" class="unity-desktop">
+                <canvas id="unity-canvas" width=960 height=600 tabindex="-1"></canvas>
+                <div id="unity-loading-bar">
+                    <div id="unity-logo"></div>
+                    <div id="unity-progress-bar-empty">
+                        <div id="unity-progress-bar-full"></div>
+                    </div>
+                </div>
+                <div id="unity-warning"> </div>
+                <div id="unity-footer">
+                    <div id="unity-logo-title-footer"></div>
+                    <div id="unity-fullscreen-button"></div>
+                    <div id="unity-build-title">DefensePlants</div>
+                </div>
+            </div>
+        </section>
 
 
-      } else {
-        // Desktop style: Render the game canvas in a window that can be maximized to fullscreen:
-        canvas.style.width = "960px";
-        canvas.style.height = "600px";
-      }
+        <script>
+            var canvas = document.querySelector("#unity-canvas");
 
-      document.querySelector("#unity-loading-bar").style.display = "block";
+            // Shows a temporary message banner/ribbon for a few seconds, or
+            // a permanent error message on top of the canvas if type=='error'.
+            // If type=='warning', a yellow highlight color is used.
+            // Modify or remove this function to customize the visually presented
+            // way that non-critical warnings and error messages are presented to the
+            // user.
+            function unityShowBanner(msg, type) {
+                var warningBanner = document.querySelector("#unity-warning");
 
-      var script = document.createElement("script");
-      script.src = loaderUrl;
-      script.onload = () => {
-        createUnityInstance(canvas, config, (progress) => {
-          document.querySelector("#unity-progress-bar-full").style.width = 100 * progress + "%";
-              }).then((unityInstance) => {
-                document.querySelector("#unity-loading-bar").style.display = "none";
-                document.querySelector("#unity-fullscreen-button").onclick = () => {
-                  unityInstance.SetFullscreen(1);
-                };
+                function updateBannerVisibility() {
+                    warningBanner.style.display = warningBanner.children.length ? 'block' : 'none';
+                }
+                var div = document.createElement('div');
+                div.innerHTML = msg;
+                warningBanner.appendChild(div);
+                if (type == 'error') div.style = 'background: red; padding: 10px;';
+                else {
+                    if (type == 'warning') div.style = 'background: yellow; padding: 10px;';
+                    setTimeout(function() {
+                        warningBanner.removeChild(div);
+                        updateBannerVisibility();
+                    }, 5000);
+                }
+                updateBannerVisibility();
+            }
 
-              }).catch((message) => {
-                alert(message);
-              });
+            var buildUrl = "Build";
+            var loaderUrl = buildUrl + "/plantbaru1.loader.js";
+            var config = {
+                arguments: [],
+                dataUrl: buildUrl + "/plantbaru1.data",
+                frameworkUrl: buildUrl + "/plantbaru1.framework.js",
+                codeUrl: buildUrl + "/plantbaru1.wasm",
+                streamingAssetsUrl: "StreamingAssets",
+                companyName: "DefaultCompany",
+                productName: "DefensePlants",
+                productVersion: "1.0",
+                showBanner: unityShowBanner,
             };
 
-      document.body.appendChild(script);
+            // By default, Unity keeps WebGL canvas render target size matched with
+            // the DOM size of the canvas element (scaled by window.devicePixelRatio)
+            // Set this to false if you want to decouple this synchronization from
+            // happening inside the engine, and you would instead like to size up
+            // the canvas DOM size and WebGL render target sizes yourself.
+            // config.matchWebGLToCanvasSize = false;
 
-    </script>
-  </body>
+            // If you would like all file writes inside Unity Application.persistentDataPath
+            // directory to automatically persist so that the contents are remembered when
+            // the user revisits the site the next time, uncomment the following line:
+            // config.autoSyncPersistentDataPath = true;
+            // This autosyncing is currently not the default behavior to avoid regressing
+            // existing user projects that might rely on the earlier manual
+            // JS_FileSystem_Sync() behavior, but in future Unity version, this will be
+            // expected to change.
+
+            if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+                // Mobile device style: fill the whole browser client area with the game canvas:
+
+                var meta = document.createElement('meta');
+                meta.name = 'viewport';
+                meta.content =
+                    'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
+                document.getElementsByTagName('head')[0].appendChild(meta);
+                document.querySelector("#unity-container").className = "unity-mobile";
+                canvas.className = "unity-mobile";
+
+                // To lower canvas resolution on mobile devices to gain some
+                // performance, uncomment the following line:
+                // config.devicePixelRatio = 1;
+
+
+            } else {
+                // Desktop style: Render the game canvas in a window that can be maximized to fullscreen:
+                canvas.style.width = "960px";
+                canvas.style.height = "600px";
+            }
+
+            document.querySelector("#unity-loading-bar").style.display = "block";
+
+            var script = document.createElement("script");
+            script.src = loaderUrl;
+            script.onload = () => {
+                createUnityInstance(canvas, config, (progress) => {
+                    document.querySelector("#unity-progress-bar-full").style.width = 100 * progress + "%";
+                }).then((unityInstance) => {
+                    document.querySelector("#unity-loading-bar").style.display = "none";
+                    document.querySelector("#unity-fullscreen-button").onclick = () => {
+                        unityInstance.SetFullscreen(1);
+                    };
+
+                }).catch((message) => {
+                    alert(message);
+                });
+            };
+
+            document.body.appendChild(script);
+
+        </script>
+
+        <!-- Footer  -->
+        <footer class="footer mt-5">
+            <div class="footer-logo d-flex align-items-center">
+                <img src="images/icon-logo.png" alt="Logo">
+                <h2 class="brand-text">LAMINAR <span class="flow">FLOW</span></h2>
+            </div>
+
+
+            <ul class="footer-nav">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="game.html">Game</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="update.html">Update</a></li>
+                <li><a href="showcase.html">Showcase</a></li>
+            </ul>
+
+            <hr>
+
+            <p class="footer-text">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse
+                ultrices gravida. Ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliquam.
+            </p>
+
+            <div class="footer-social">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fas fa-gamepad"></i></a>
+            </div>
+        </footer>
+
+
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
+        </script>
+    </body>
+
 </html>
