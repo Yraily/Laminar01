@@ -5,85 +5,226 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="icon" type="images/png" href="images/icon-logo.png">
-        <title>LROC</title>
+        <title>Gebuk Hama</title>
+
+        <!-- Bootstrap -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
             integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+
+        <!-- Custom CSS -->
         <link rel="stylesheet" href="style.css">
+
+        <style>
+            /* === VIDEO & IMAGE FRAME === */
+            .game-video {
+                position: relative;
+                width: 100%;
+                max-width: 900px;
+                margin: 0 auto;
+            }
+
+            .video-wrapper {
+                position: relative;
+                width: 100%;
+                aspect-ratio: 16 / 9;
+                overflow: hidden;
+                border-radius: 15px;
+                box-shadow: 0 0 25px rgba(168, 85, 247, 0.25);
+            }
+
+            /* Video dan gambar utama (frame besar) */
+            .video-wrapper video,
+            .video-wrapper img {
+                position: absolute;
+                inset: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 15px;
+                transition: all 0.6s ease;
+            }
+
+            /* efek hilang halus */
+            .video-wrapper .d-none {
+                opacity: 0;
+                transform: scale(1.02);
+                pointer-events: none;
+            }
+
+            /* efek muncul halus */
+            .video-wrapper img {
+                opacity: 0;
+                transform: scale(1.03);
+            }
+
+            .video-wrapper img.show {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            /* === THUMBNAIL GALLERY (di bawah video) === */
+            .game-gallery {
+                display: flex;
+                gap: 1rem;
+                justify-content: center;
+                flex-wrap: wrap;
+                margin-top: 1.5rem;
+            }
+
+            /* Thumbnail gambar */
+            .gallery-thumb {
+                width: 180px;
+                height: 100px;
+                object-fit: cover;
+                border-radius: 10px;
+                cursor: pointer;
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+
+            .gallery-thumb:hover {
+                transform: scale(1.05);
+                box-shadow: 0 0 12px rgba(168, 85, 247, 0.5);
+            }
+
+            /* === KOTAK VIDEO DI GALERI === */
+            .video-thumb {
+                position: relative;
+                overflow: hidden;
+                border-radius: 10px;
+                width: 180px;
+                height: 100px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+            }
+
+            /* Gambar thumbnail video (biar sama ukurannya) */
+            .video-thumb-img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 10px;
+                transition: transform 0.3s ease, filter 0.3s ease;
+            }
+
+            /* Efek hover */
+            .video-thumb:hover .video-thumb-img {
+                transform: scale(1.05);
+                filter: brightness(0.8);
+            }
+
+            /* Ikon play di tengah */
+            .play-icon {
+                position: absolute;
+                inset: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 2.5rem;
+                color: rgba(255, 255, 255, 0.85);
+                pointer-events: none;
+                transition: transform 0.3s ease, opacity 0.3s ease;
+            }
+
+            .video-thumb:hover .play-icon {
+                transform: scale(1.1);
+                opacity: 1;
+            }
+
+            /* === RESPONSIVE === */
+            @media (max-width: 768px) {
+
+                .gallery-thumb,
+                .video-thumb {
+                    width: 45%;
+                    height: auto;
+                    aspect-ratio: 16 / 9;
+                }
+            }
+
+        </style>
     </head>
 
     <body>
-        <!-- Navbar -->
+        <!-- Background Blur -->
         <div class="blur-biru"></div>
+
+        <!-- Navbar -->
         <nav class="navbar navbar-expand-lg fixed-top">
             <div class="container">
-                <!-- Brand -->
                 <a class="navbar-brand d-flex align-items-center" href="index.html">
                     <img src="images/icon-logo.png" alt="Logo">
                     <span class="brand-text">LAMINAR <span class="flow">FLOW</span></span>
                 </a>
-
-                <!-- Toggler -->
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <!-- Nav Menu (kanan) -->
                 <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="game.html">Game</a></li>
                         <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
-                        <li class="nav-item"><a class="nav-link" href="about.html">Update</a></li>
+                        <li class="nav-item"><a class="nav-link" href="update.html">Update</a></li>
                         <li class="nav-item"><a class="nav-link" href="showcase.html">Showcase</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
+
+        <!-- Parallax Header -->
         <section class="game-parallax">
             <div class="parallax-overlay">
                 <h1>Gebuk Hama</h1>
-                <p>bkl.</p>
+                <p>Fast-paced action farming chaos!</p>
             </div>
         </section>
+
+        <!-- Game Detail Section -->
         <section class="game-detail">
-
-
-            <!-- Konten Utama -->
             <div class="game-detail-content">
                 <div class="game-left">
                     <h1>Gebuk Hama</h1>
 
-                    <!-- Video Preview -->
+                    <!-- Video + Gambar -->
                     <div class="game-video">
-                        <video controls poster="images/logo.png">
-                            <source src="video/rbx.mp4" type="video/mp4">
-                        </video>
+                        <div class="video-wrapper">
+                            <video id="mainVideo" controls poster="images/logo.png">
+                                <source src="video/rbx.mp4" type="video/mp4">
+                            </video>
+                            <img id="mainImage" src="" alt="Preview" class="d-none">
+                        </div>
                     </div>
 
                     <!-- Gallery Screenshot -->
                     <div class="game-gallery">
-                        <img src="images/showcase1.png" alt="Gameplay 1">
-                        <img src="images/showcase2.png" alt="Gameplay 2">
-                        <img src="images/showcase3.png" alt="Gameplay 3">
+                        <!-- Kotak video pertama -->
+                        <div class="video-thumb">
+                            <img src="images/showcase4.png" alt="Video Preview" class="video-thumb-img">
+                            <span class="play-icon">▶</span>
+                        </div>
+
+                        <!-- 3 gambar biasa -->
+                        <img src="images/showcase1.png" alt="Gameplay 1" class="gallery-thumb">
+                        <img src="images/showcase2.png" alt="Gameplay 2" class="gallery-thumb">
+                        <img src="images/showcase3.png" alt="Gameplay 3" class="gallery-thumb">
                     </div>
 
-                    <!-- Deskripsi + Sidebar -->
+
+
+
+                    <!-- Deskripsi -->
                     <div class="game-bottom">
                         <div class="game-desc">
                             <h2>About This Game</h2>
                             <p>
-                                <strong>Gebuk Hama</strong> adalah game gebuk gebukin hama. pokoknya coba aja main. cara
-                                mainnya, pertama lo ke kotak coklat dulu, buat tanam tanaman, abis itu tekan start. kalo
-                                ada lingkaran merah, berarti itu hama. klik kanan buat gebukin, tar dia kabur. kalo dah
-                                abis, bakal ada next wavenya. mainin dah tuh ampe kelar.
+                                <strong>Gebuk Hama</strong> adalah game gebuk-gebukin hama. Pokoknya coba aja main!
+                                Pertama tanam dulu di kotak coklat, lalu tekan start. Kalau ada lingkaran merah,
+                                berarti itu hama — klik kanan buat gebukin biar kabur. Setelah satu gelombang selesai,
+                                bakal lanjut ke wave berikutnya. Mainin terus sampai kelar!
                             </p>
 
                             <div class="game-buttons">
-                                <a href="gaming.html">
-
-                                    <button class="btn-play">Play</button>
-                                </a>
+                                <a href="gaming.html"><button class="btn-play">Play</button></a>
                                 <button class="btn-download">Download</button>
                             </div>
                         </div>
@@ -105,17 +246,12 @@
             </div>
         </section>
 
-
-
-
-        <!-- Footer  -->
-        <!-- Footer  -->
+        <!-- Footer -->
         <footer class="footer mt-5">
             <div class="footer-logo d-flex align-items-center">
                 <img src="images/icon-logo.png" alt="Logo">
                 <h2 class="brand-text">LAMINAR <span class="flow">FLOW</span></h2>
             </div>
-
 
             <ul class="footer-nav">
                 <li><a href="index.html">Home</a></li>
@@ -126,23 +262,60 @@
             </ul>
 
             <hr>
-
             <p class="footer-text">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse
-                ultrices gravida. Ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliquam.
+                © 2025 Laminar Flow Studio. All rights reserved.
             </p>
-
             <div class="footer-social">
                 <a href="#"><i class="fab fa-facebook"></i></a>
                 <a href="#"><i class="fab fa-instagram"></i></a>
                 <a href="#"><i class="fas fa-gamepad"></i></a>
             </div>
         </footer>
+
+        <!-- Script -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
         </script>
+
+        <script>
+            const video = document.getElementById("mainVideo");
+            const image = document.getElementById("mainImage");
+            const thumbs = document.querySelectorAll(".gallery-thumb");
+            const videoThumb = document.querySelector(".video-thumb");
+
+            thumbs.forEach(thumb => {
+                if (!thumb.classList.contains("video-thumb")) {
+                    thumb.addEventListener("click", () => {
+                        video.pause();
+                        video.classList.add("d-none");
+                        image.src = thumb.src;
+                        image.classList.remove("d-none");
+                        image.classList.add("show");
+                    });
+                }
+            });
+
+            // Klik gambar besar → kembali ke video
+            image.addEventListener("click", () => {
+                image.classList.remove("show");
+                setTimeout(() => {
+                    image.classList.add("d-none");
+                    video.classList.remove("d-none");
+                }, 300);
+            });
+
+            // Klik thumbnail video → kembali ke video
+            videoThumb.addEventListener("click", () => {
+                image.classList.remove("show");
+                setTimeout(() => {
+                    image.classList.add("d-none");
+                    video.classList.remove("d-none");
+                }, 300);
+            });
+
+        </script>
+
+
     </body>
 
 </html>
