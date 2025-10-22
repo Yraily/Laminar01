@@ -98,6 +98,93 @@
                 transform: translateY(-3px);
             }
 
+            /* === FEATURED GAMES (khusus index) === */
+            .featured-section {
+                color: #fff;
+            }
+
+            .featured-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 2rem;
+                justify-items: center;
+            }
+
+            .featured-card {
+                position: relative;
+                width: 320px;
+                height: 400px;
+                border-radius: 20px;
+                overflow: hidden;
+                background: #111;
+                box-shadow: 0 0 20px rgba(168, 85, 247, 0.1);
+                transition: transform 0.4s ease, box-shadow 0.4s ease;
+                cursor: pointer;
+            }
+
+            .featured-card:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 10px 30px rgba(168, 85, 247, 0.4);
+            }
+
+            .featured-thumb {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: transform 0.5s ease, opacity 0.4s ease;
+            }
+
+            .featured-card:hover .featured-thumb {
+                transform: scale(1.05);
+                opacity: 0.8;
+            }
+
+            .featured-info {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background: linear-gradient(180deg, rgba(13, 12, 29, 0) 0%, rgba(13, 12, 29, 0.95) 90%);
+                padding: 1.5rem;
+                transform: translateY(100%);
+                opacity: 0;
+                transition: transform 0.4s ease, opacity 0.4s ease;
+            }
+
+            .featured-card:hover .featured-info {
+                transform: translateY(0);
+                opacity: 1;
+            }
+
+            .featured-info h3 {
+                font-size: 1.1rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .featured-info p {
+                font-size: 0.9rem;
+                color: #ddd;
+                margin-bottom: 0.3rem;
+            }
+
+            .btn-featured {
+                display: inline-block;
+                margin-top: 0.8rem;
+                background: linear-gradient(90deg, #a855f7, #ec4899);
+                color: white;
+                font-weight: 600;
+                text-decoration: none;
+                padding: 0.4rem 1rem;
+                border-radius: 9999px;
+                font-size: 0.85rem;
+                transition: background 0.3s ease;
+            }
+
+            .btn-featured:hover {
+                background: linear-gradient(90deg, #9333ea, #db2777);
+            }
+
+
             /* Responsive tweak */
             @media (max-width: 576px) {
                 .hero-parallax h1 {
@@ -159,22 +246,48 @@
             </div>
         </section>
 
-        <!-- ========== FEATURED GAME ========== -->
-        <section class="featured-game py-5">
+        <!-- ========== FEATURED GAME (Kaya Game Page) ========== -->
+        <section class="featured-section py-2 mt-5">
             <div class="container text-center">
-                <h2 class="section-title">Featured Game</h2>
-                <div class="d-flex flex-wrap align-items-center justify-content-center mt-4">
-                    <img src="images/showcase2.png" alt="Let's Restore Our Coast" class="featured-img rounded shadow"
-                        style="max-width:400px;">
-                    <div class="text-start ms-lg-4 mt-4 mt-lg-0" style="max-width:400px;">
-                        <h3 class="fw-bold">Let’s Restore Our Coast</h3>
-                        <p>Explore, learn, and restore the beauty of nature in this 3D educational adventure focused on
-                            environmental awareness.</p>
-                        <a href="detail-game.html" class="btn btn-details mt-2">Learn More</a>
+                <h2 class="section-title mb-5">Featured Games</h2>
+
+                <div class="featured-grid">
+                    <!-- Game 1 -->
+                    <div class="featured-card">
+                        <img src="images/panel.png" alt="Let’s Restore Our Coast" class="featured-thumb">
+                        <div class="featured-info">
+                            <h3>Let’s Restore Our Coast</h3>
+                            <p><strong>Genre:</strong> Simulation, Exploration</p>
+                            <p><strong>Platform:</strong> Windows 10+</p>
+                            <a href="detail-game.html" class="btn-featured">Details</a>
+                        </div>
+                    </div>
+
+                    <!-- Game 2 -->
+                    <div class="featured-card">
+                        <img src="images/showcase2.png" alt="Gebuk Hama" class="featured-thumb">
+                        <div class="featured-info">
+                            <h3>Gebuk Hama</h3>
+                            <p><strong>Genre:</strong> Action, Simulation</p>
+                            <p><strong>Platform:</strong> Windows 10+</p>
+                            <a href="detail-game2.html" class="btn-featured">Details</a>
+                        </div>
+                    </div>
+
+                    <!-- Game 3 -->
+                    <div class="featured-card">
+                        <img src="images/showcase3.png" alt="Project TBA" class="featured-thumb">
+                        <div class="featured-info">
+                            <h3>Project TBA</h3>
+                            <p><strong>Genre:</strong> Coming Soon</p>
+                            <p><strong>Platform:</strong> TBA</p>
+                            <a href="#" class="btn-featured disabled" aria-disabled="true">Coming Soon</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
+
 
         <!-- ========== UPDATE SECTION ========== -->
         <section class="section-content mt-5">

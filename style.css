@@ -702,14 +702,14 @@ body {
     margin-top: 1rem;
 }
 
-.game-gallery img {
+/* .game-gallery img {
     width: 120px;
     height: 70px;
     object-fit: cover;
     border-radius: 0.5rem;
     opacity: 0.9;
     transition: 0.3s ease;
-}
+} */
 
 .game-gallery img:hover {
     transform: translateY(-5px);
