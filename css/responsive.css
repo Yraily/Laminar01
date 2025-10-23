@@ -1,0 +1,11 @@
+
+/* responsive.css - consolidated media queries */
+@media (max-width: 992px) {
+  .masonry-grid { column-count:2; }
+  .update-log { flex-direction:column; }
+  .update-sidebar { margin-top:2rem; }
+}
+@media (max-width: 600px) {
+  .masonry-grid { column-count:1; }
+  .thumb-gallery img { width:45%; height:auto; aspect-ratio:16/9; }
+}

@@ -1,0 +1,282 @@
+/* Hapus efek warna biru bawaan link */
+.update-card,
+.update-card:link,
+.update-card:visited,
+.update-card:hover,
+.update-card:active {
+    color: #fff;
+    text-decoration: none;
+}
+
+/* Kalau mau teks paragraf-nya tetap abu lembut */
+.update-content p {
+    color: #d1c4e9;
+}
+
+/* Kalau mau efek hover lebih elegan (gak ubah warna teks, cuma glow card-nya aja) */
+.update-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 25px rgba(168, 85, 247, 0.3);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+/* ========== UPDATE PARALLAX HERO ========== */
+.update-hero {
+    position: relative;
+    height: 80vh;
+    background: url("../images/paralax.png") center/cover fixed no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+    overflow: hidden;
+}
+
+.update-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(13, 12, 29, 0.7);
+    z-index: 1;
+}
+
+.update-hero .content {
+    position: relative;
+    z-index: 2;
+}
+
+.update-hero h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+}
+
+.update-hero p {
+    font-size: 1.1rem;
+    color: #c4b5fd;
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+    .update-hero {
+        height: 60vh;
+    }
+
+    .update-hero h1 {
+        font-size: 2.2rem;
+    }
+
+    .update-hero p {
+        font-size: 1rem;
+    }
+}
+
+/* === Fix Card Lebar & Center === */
+.update-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 4rem auto;
+    padding: 0 1.5rem;
+    max-width: 1100px;
+    /* batas lebar biar gak keluar dari layar */
+}
+
+.update-card {
+    width: 100%;
+    max-width: 950px;
+    /* biar sejajar & gak melebar */
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    display: flex;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    color: #fff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.update-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px rgba(168, 85, 247, 0.3);
+}
+
+/* Pastikan gambar tetap proporsional */
+.update-card img {
+    width: 280px;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* Responsif */
+@media (max-width: 768px) {
+    .update-card {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .update-card img {
+        width: 100%;
+        height: 200px;
+    }
+
+    .update-section {
+        padding: 0 1rem;
+    }
+}
+
+/* update.css - update log & lightbox */
+.update-log {
+    max-width: 1200px;
+    margin: 6rem auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    padding: 0 1.5rem;
+}
+
+.update-main {
+    flex: 2;
+    min-width: 600px;
+}
+
+/* === SIDEBAR === */
+.update-sidebar {
+    flex: 1;
+    min-width: 300px;
+    margin-top: 4.3rem;
+}
+
+.sidebar-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 1.2rem;
+    border-left: 4px solid #a855f7;
+    padding-left: 10px;
+    text-shadow: 0 0 10px rgba(168, 85, 247, 0.4);
+}
+
+.update-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 0.8rem;
+    margin-bottom: 1rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-decoration: none;
+    color: #fff;
+}
+
+.update-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 15px rgba(168, 85, 247, 0.3);
+}
+
+.update-item img {
+    width: 80px;
+    height: 60px;
+    border-radius: 8px;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.update-info h4 {
+    font-size: 1rem;
+    margin: 0;
+    font-weight: 600;
+}
+
+.update-info p {
+    font-size: 0.85rem;
+    color: #a78bfa;
+    margin-bottom: 0.2rem;
+}
+
+.update-info span {
+    font-size: 0.75rem;
+    color: #d1c4e9;
+}
+
+/* === UPDATE TEXT SECTION === */
+.update-text {
+    max-width: 800px;
+    margin: 2.5rem auto 3rem;
+    /* jarak dari galeri dan bawah */
+    padding: 0 1.5rem;
+    line-height: 1.9;
+    font-size: 1.05rem;
+    color: #e0d8f5;
+    text-align: justify;
+    text-justify: inter-word;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.update-text p {
+    margin-bottom: 1.4rem;
+}
+
+/* efek lembut pas hover biar interaktif */
+.update-text:hover {
+    color: #f0eaff;
+    transform: translateY(-2px);
+}
+
+/* main frame and thumbs */
+.main-frame {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto 1.5rem;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 0 25px rgba(168, 85, 247, 0.25);
+    cursor: zoom-in;
+}
+
+.main-frame img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.thumb-gallery {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+}
+
+.thumb-gallery img {
+    width: 200px;
+    height: 110px;
+    object-fit: cover;
+    border-radius: 10px;
+    cursor: pointer;
+    opacity: .9;
+    transition: transform .3s ease;
+}
+
+.lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(13, 12, 29, 0.9);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.lightbox img {
+    width: auto;
+    height: 90vh;
+    max-width: 95%;
+    object-fit: contain;
+    border-radius: 12px;
+    box-shadow: 0 0 40px rgba(168, 85, 247, 0.5);
+}

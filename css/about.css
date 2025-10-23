@@ -1,0 +1,114 @@
+/* === ABOUT PAGE FIX === */
+
+.about-section {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 8rem 1rem 5rem;
+    color: #fff;
+    min-height: 100vh;
+    z-index: 1;
+}
+
+.big-border {
+    position: relative;
+    background: url("../images/big-border.png") center top no-repeat;
+    background-size: 100% 100%;
+    max-width: 900px;
+    width: 100%;
+    min-height: 850px;
+    margin: 0 auto;
+    padding: 6rem 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    box-sizing: border-box;
+    z-index: 2;
+    box-shadow: 0 0 30px rgba(168, 85, 247, 0.15);
+    border-radius: 18px;
+}
+
+.about-content {
+    position: relative;
+    z-index: 3;
+    max-width: 700px;
+}
+
+.about-content h1 {
+    font-size: 2.3rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
+
+.about-content p {
+    color: #d1c4e9;
+    line-height: 1.8;
+    margin-top: 1rem;
+    text-align: justify;
+}
+
+.about-logo {
+    width: 100px;
+    margin-bottom: 1.5rem;
+    filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.5));
+}
+
+.member-grid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin: 2.5rem 0;
+}
+
+.member-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 180px;
+}
+
+.member-circle {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 2px solid #a855f7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle, rgba(168, 85, 247, 0.2), rgba(0, 0, 0, 0.3));
+    transition: all 0.3s ease;
+}
+
+.member-circle img {
+    width: 85px;
+    height: 85px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.member-circle:hover {
+    transform: scale(1.08);
+    box-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
+}
+
+.member-card p {
+    margin-top: 0.8rem;
+    font-weight: 600;
+    color: #fff;
+}
+
+@media (max-width: 768px) {
+    .big-border {
+        background-size: contain;
+        padding: 4rem 2rem;
+    }
+
+    .about-content h1 {
+        font-size: 1.8rem;
+    }
+}
