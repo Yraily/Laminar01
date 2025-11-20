@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" type="images/png" href="../images/icon-logo.png" />
+        <title>Let's Restore Our Coast - Update Log | Laminar Flow</title>
+
+        <!-- Bootstrap & Icons -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+        <style>
+
+        </style>
+
+        <link rel="stylesheet" href="css/update-pages.css">
+        <link rel="stylesheet" href="css/new-base.css">
+    </head>
+
+    <body class="text-white">
+        <!-- ========== BACKGROUND BLUR ========== -->
+        <div class="blur-biru"></div>
+        <div class="blur-pink"></div>
+
+        <!-- HEADER INCLUDE -->
+        <div data-include="new-header"></div>
+
+        <!-- ========== UPDATE LOG SECTION ========== -->
+        <section class="update-log">
+            <div class="update-container">
+                <!-- MAIN CONTENT -->
+                <div class="update-main">
+                    <h1>Let's Restore Our Coast</h1>
+                    <h3>Environmental Enhancement Update #1</h3>
+
+                    <div class="main-frame">
+                        <img id="mainImage" src="../images/showcase5.png" alt="Main Showcase"
+                            data-full="../images/showcase5.png">
+                    </div>
+
+                    <div class="thumb-gallery">
+                        <img src="../images/showcase1.png" data-full="../images/showcase1.png" alt="Preview 1"
+                            onclick="changeImage(this)">
+                        <img src="../images/showcase2.png" data-full="../images/showcase2.png" alt="Preview 2"
+                            onclick="changeImage(this)">
+                        <img src="../images/showcase3.png" data-full="../images/showcase3.png" alt="Preview 3"
+                            onclick="changeImage(this)">
+                    </div>
+
+                    <!-- UPDATE TEXT -->
+                    <div class="update-text">
+                        <p>
+                            We've addressed several bugs that were affecting the gameplay experience in <strong>Let's
+                                Restore Our Coast</strong>.
+                            The game now runs more smoothly, and marine life animations feel more vibrant and lifelike.
+                        </p>
+                        <p>
+                            Additionally, the underwater debris collection system has been optimized, allowing players
+                            to
+                            gather trash more efficiently. This update also introduces stunning new visual effects
+                            in coastal areas during twilight hours.
+                        </p>
+                        <p>
+                            Thank you to all community members who provided feedback - your input helps us continue
+                            improving and evolving this game!
+                        </p>
+                    </div>
+                </div>
+
+                <!-- SIDEBAR -->
+                <aside class="update-sidebar">
+                    <h3 class="sidebar-title">Related Updates</h3>
+
+                    <a href="Update01.html" class="update-item">
+                        <img src="../images/panel.png" alt="Let's Restore Our Coast">
+                        <div class="update-info">
+                            <h4>Let's Restore Our Coast</h4>
+                            <p>Environmental Update</p>
+                            <span>Oct 9, 2024</span>
+                        </div>
+                    </a>
+
+                    <a href="#" class="update-item">
+                        <img src="../images/showcase2.png" alt="Gebuk Hama">
+                        <div class="update-info">
+                            <h4>Gebuk Hama</h4>
+                            <p>Version 1.2 Update</p>
+                            <span>Oct 12, 2024</span>
+                        </div>
+                    </a>
+
+                    <a href="#" class="update-item">
+                        <img src="../images/showcase3.png" alt="Project TBA">
+                        <div class="update-info">
+                            <h4>New Project</h4>
+                            <p>Teaser Released</p>
+                            <span>Oct 15, 2024</span>
+                        </div>
+                    </a>
+                </aside>
+            </div>
+        </section>
+
+        <!-- FOOTER INCLUDE -->
+        <div data-include="footer"></div>
+
+        <!-- SCRIPTS -->
+        <script src="include.js"></script>
+
+        <!-- ========== LIGHTBOX (DIPINDAH KE LUAR UPDATE-MAIN) ========== -->
+        <div id="lightbox" class="lightbox">
+            <div class="lightbox-content">
+                <button class="lightbox-close" onclick="closeLightbox()">
+                    <i class="fas fa-times"></i>
+                </button>
+                <img id="lightboxImage" src="" alt="" class="lightbox-image">
+            </div>
+        </div>
+
+        <!-- ========== SCRIPTS ========== -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+
+        <script>
+            let currentActiveThumb = null;
+
+            function changeImage(element) {
+                const mainImage = document.getElementById("mainImage");
+                mainImage.style.opacity = 0;
+
+                // Remove active class from previous thumb
+                if (currentActiveThumb) {
+                    currentActiveThumb.classList.remove('active');
+                }
+
+                // Add active class to clicked thumb
+                element.classList.add('active');
+                currentActiveThumb = element;
+
+                setTimeout(() => {
+                    const fullSrc = element.getAttribute("data-full") || element.src;
+                    mainImage.src = fullSrc;
+                    mainImage.setAttribute("data-full", fullSrc);
+                    mainImage.style.opacity = 1;
+                }, 200);
+            }
+
+            // LIGHTBOX FUNCTIONALITY
+            const mainImage = document.getElementById("mainImage");
+            const lightbox = document.getElementById("lightbox");
+            const lightboxImage = document.getElementById("lightboxImage");
+
+            // Click main image to open lightbox
+            mainImage.addEventListener("click", () => {
+                const fullSrc = mainImage.getAttribute("data-full") || mainImage.src;
+                lightboxImage.src = fullSrc;
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+
+            // (DIPERBAIKI) Thumbnail sekarang HANYA ganti main image,
+            // tidak lagi membuka lightbox supaya zoom selalu pakai mainImage.
+            // Jadi bagian event click untuk buka lightbox dari thumbnail DIHAPUS.
+
+            function closeLightbox() {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+
+            // Close lightbox with ESC key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    closeLightbox();
+                }
+            });
+
+            // Close lightbox when clicking outside image
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) {
+                    closeLightbox();
+                }
+            });
+
+            // Initialize first thumbnail as active & sync data-full
+            document.addEventListener('DOMContentLoaded', function() {
+                const firstThumb = document.querySelector('.thumb-gallery img');
+                const mainImage = document.getElementById("mainImage");
+                if (firstThumb) {
+                    firstThumb.classList.add('active');
+                    currentActiveThumb = firstThumb;
+
+                    const fullSrc = firstThumb.getAttribute("data-full") || firstThumb.src;
+                    mainImage.src = fullSrc;
+                    mainImage.setAttribute("data-full", fullSrc);
+                }
+            });
+
+        </script>
+    </body>
+
+</html>

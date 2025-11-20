@@ -1,114 +1,113 @@
-/* === ABOUT PAGE FIX === */
+/* === ABOUT PAGE (NEW CLEAN VERSION) === */
 
 .about-section {
     position: relative;
     display: flex;
     justify-content: center;
-    align-items: flex-start;
     padding: 8rem 1rem 5rem;
-    color: #fff;
     min-height: 100vh;
-    z-index: 1;
+    color: #fff;
 }
 
-.big-border {
-    position: relative;
+/* .big-border {
     background: url("../images/new-border.png") center top no-repeat;
     background-size: 100% 100%;
     max-width: 900px;
     width: 100%;
-    min-height: 850px;
-    margin: 0 auto;
     padding: 6rem 3rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     text-align: center;
-    box-sizing: border-box;
-    z-index: 2;
-    /* box-shadow: 0 0 30px rgba(168, 85, 247, 0.15); */
     border-radius: 18px;
-}
-
-.about-content {
-    position: relative;
-    z-index: 3;
-    max-width: 700px;
-}
-
-.about-content h1 {
-    font-size: 2.3rem;
-    font-weight: 700;
-    margin-bottom: 1.5rem;
-}
-
-.about-content p {
-    color: #d1c4e9;
-    line-height: 1.8;
-    margin-top: 1rem;
-    text-align: justify;
-}
+} */
 
 .about-logo {
-    width: 100px;
-    margin-bottom: 1.5rem;
+    width: 110px;
+    margin: 1rem auto 1.5rem;
     filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.5));
 }
 
+.about-content p {
+    color: #d8c6ff;
+    margin-top: 1rem;
+    line-height: 1.75;
+    text-align: justify;
+}
+
+.section-subtitle {
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
+    font-size: 1.6rem;
+    font-weight: 700;
+}
+
+
+/* ===== MEMBER GRID ===== */
 .member-grid {
     display: flex;
     justify-content: center;
-    align-items: center;
+    gap: 2.2rem;
     flex-wrap: wrap;
-    gap: 2rem;
-    margin: 2.5rem 0;
+    margin-bottom: 3rem;
 }
 
-.member-card {
+.member-card a {
+    text-decoration: none;
+    color: white;
     display: flex;
     flex-direction: column;
     align-items: center;
-    text-align: center;
-    width: 180px;
 }
 
 .member-circle {
-    width: 120px;
-    height: 120px;
+    width: 130px;
+    height: 130px;
     border-radius: 50%;
-    border: 2px solid #a855f7;
+    padding: 5px;
+    background: radial-gradient(circle, rgba(168, 85, 247, 0.25), rgba(0, 0, 0, 0.3));
+    border: 2px solid rgba(168, 85, 247, 0.5);
     display: flex;
     justify-content: center;
     align-items: center;
-    background: radial-gradient(circle, rgba(168, 85, 247, 0.2), rgba(0, 0, 0, 0.3));
-    transition: all 0.3s ease;
+    transition: 0.35s ease;
 }
 
 .member-circle img {
-    width: 85px;
-    height: 85px;
-    object-fit: cover;
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
+    object-fit: cover;
 }
 
-.member-circle:hover {
+.member-card:hover .member-circle {
     transform: scale(1.08);
-    box-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
+    box-shadow: 0 0 18px rgba(168, 85, 247, 0.6);
 }
 
-.member-card p {
-    margin-top: 0.8rem;
+.member-role {
+    margin-top: 12px;
+    font-size: 1rem;
     font-weight: 600;
-    color: #fff;
+    letter-spacing: 0.5px;
 }
 
+
+/* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
     .big-border {
-        background-size: contain;
         padding: 4rem 2rem;
+        background-size: contain;
     }
 
-    .about-content h1 {
-        font-size: 1.8rem;
+    .about-section {
+        padding-top: 6rem;
+    }
+
+    .member-circle {
+        width: 110px;
+        height: 110px;
+    }
+
+    .member-circle img {
+        width: 85px;
+        height: 85px;
     }
 }

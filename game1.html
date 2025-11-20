@@ -1,0 +1,1413 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>DefensePlants | Laminar Flow</title>
+        <link rel="shortcut icon" href="TemplateData/favicon.ico">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <link rel="stylesheet" href="TemplateData/gaming.css">
+        <style>
+            /* ========== VARIABLES & BASE STYLES ========== */
+            :root {
+                --primary: #a855f7;
+                --secondary: #ec4899;
+                --accent: #4ade80;
+                --dark: #0d0c1d;
+                --darker: #070616;
+                --light: #c4b5fd;
+                --card-bg: rgba(255, 255, 255, 0.05);
+                --glass: rgba(255, 255, 255, 0.1);
+            }
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                background: linear-gradient(to bottom, var(--dark) 0%, #2b1547 100%);
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+                color: #fff;
+                line-height: 1.6;
+                overflow-x: hidden;
+                min-height: 100vh;
+                display: flex;
+                flex-direction: column;
+            }
+
+            /* ========== BACKGROUND ELEMENTS ========== */
+            .blur-biru {
+                position: fixed;
+                top: -10%;
+                right: -10%;
+                width: 40%;
+                height: 40%;
+                background: radial-gradient(circle, rgba(168, 85, 247, 0.3) 0%, rgba(168, 85, 247, 0) 70%);
+                filter: blur(40px);
+                z-index: 1;
+                pointer-events: none;
+            }
+
+            .blur-pink {
+                position: fixed;
+                bottom: -10%;
+                left: -10%;
+                width: 40%;
+                height: 40%;
+                background: radial-gradient(circle, rgba(236, 72, 153, 0.3) 0%, rgba(236, 72, 153, 0) 70%);
+                filter: blur(40px);
+                z-index: 1;
+                pointer-events: none;
+            }
+
+            /* ========== NAVBAR ========== */
+            .custom-navbar {
+                z-index: 4000;
+                background: rgba(10, 10, 25, 0.9) !important;
+                backdrop-filter: blur(14px);
+                border-bottom: 1px solid rgba(148, 163, 253, 0.25);
+                padding: 0.8rem 0;
+            }
+
+            .navbar-brand {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                text-decoration: none;
+            }
+
+            .navbar-brand img {
+                width: 45px;
+                height: 45px;
+                border-radius: 50%;
+                object-fit: contain;
+            }
+
+            .brand-text {
+                font-weight: 700;
+                font-size: 1.3rem;
+                color: #fff;
+            }
+
+            .brand-text .flow {
+                background: linear-gradient(90deg, var(--primary), var(--secondary));
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+            }
+
+            .nav-link {
+                color: #fff !important;
+                margin: 0 1rem;
+                font-weight: 500;
+                transition: color 0.3s ease;
+                position: relative;
+            }
+
+            .nav-link:hover {
+                color: #c084fc !important;
+            }
+
+            .nav-link.active::after {
+                content: '';
+                position: absolute;
+                bottom: -5px;
+                left: 0;
+                width: 100%;
+                height: 2px;
+                background: linear-gradient(90deg, var(--primary), var(--secondary));
+            }
+
+            .glass-toggle {
+                border-radius: 999px;
+                border: 1px solid rgba(168, 85, 247, 0.7);
+                background: radial-gradient(circle at top left,
+                        rgba(168, 85, 247, 0.45),
+                        rgba(15, 23, 42, 0.9));
+                padding: 6px 10px;
+                backdrop-filter: blur(14px);
+                box-shadow: 0 0 12px rgba(168, 85, 247, 0.6);
+            }
+
+            .glass-toggle .navbar-toggler-icon {
+                filter: brightness(0) invert(1);
+                width: 22px;
+                height: 22px;
+            }
+
+            /* ========== GAME CONTAINER ========== */
+            .game-container {
+                position: relative;
+                z-index: 2;
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                padding: 2rem 1rem;
+                margin-top: 80px;
+                width: 100%;
+            }
+
+            .game-header {
+                text-align: center;
+                margin-bottom: 2rem;
+                max-width: 800px;
+                width: 100%;
+            }
+
+            .game-title {
+                font-size: 3rem;
+                font-weight: 800;
+                margin-bottom: 1rem;
+                background: linear-gradient(90deg, var(--primary), var(--secondary));
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+
+            .game-subtitle {
+                font-size: 1.2rem;
+                color: var(--light);
+                margin-bottom: 2rem;
+            }
+
+            .game-info {
+                display: flex;
+                justify-content: center;
+                gap: 2rem;
+                flex-wrap: wrap;
+                margin-bottom: 2rem;
+                width: 100%;
+            }
+
+            .info-card {
+                background: var(--card-bg);
+                border-radius: 12px;
+                padding: 1rem 1.5rem;
+                text-align: center;
+                backdrop-filter: blur(8px);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                min-width: 150px;
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+
+            .info-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 20px rgba(168, 85, 247, 0.2);
+            }
+
+            .info-card h3 {
+                font-size: 1rem;
+                color: var(--light);
+                margin-bottom: 0.5rem;
+            }
+
+            .info-card p {
+                font-size: 1.1rem;
+                font-weight: 600;
+                color: #fff;
+            }
+
+            /* ========== FEATURES SECTION ========== */
+            .features-section {
+                padding: 3rem 1rem;
+                max-width: 1200px;
+                margin: 0 auto;
+                width: 100%;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+                font-weight: 700;
+                margin-bottom: 3rem;
+                position: relative;
+                display: inline-block;
+                color: #fff;
+                text-align: center;
+                width: 100%;
+            }
+
+            .section-title::after {
+                content: '';
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+                bottom: -10px;
+                width: 80px;
+                height: 4px;
+                background: linear-gradient(90deg, var(--primary), var(--secondary));
+                border-radius: 2px;
+            }
+
+            .features-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 1.5rem;
+                margin-bottom: 3rem;
+            }
+
+            .feature-card {
+                background: var(--card-bg);
+                border-radius: 15px;
+                padding: 2rem;
+                text-align: center;
+                backdrop-filter: blur(8px);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+
+            .feature-card:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 15px 30px rgba(168, 85, 247, 0.2);
+            }
+
+            .feature-icon {
+                font-size: 3rem;
+                margin-bottom: 1.5rem;
+                background: linear-gradient(90deg, var(--primary), var(--secondary));
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+
+            .feature-card h3 {
+                font-size: 1.5rem;
+                margin-bottom: 1rem;
+                color: #fff;
+            }
+
+            .feature-card p {
+                color: var(--light);
+                line-height: 1.6;
+            }
+
+
+
+            /* ========== GAME CONTROLS ========== */
+            .game-controls {
+                display: flex;
+                justify-content: center;
+                gap: 1rem;
+                flex-wrap: wrap;
+                margin: 2rem 0;
+                width: 100%;
+            }
+
+            .control-btn {
+                background: var(--card-bg);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                color: #fff;
+                padding: 0.8rem 1.5rem;
+                border-radius: 50px;
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                backdrop-filter: blur(8px);
+            }
+
+            .control-btn:hover {
+                background: rgba(168, 85, 247, 0.2);
+                transform: translateY(-3px);
+            }
+
+            /* ========== ACHIEVEMENTS ========== */
+            .achievements-section {
+                padding: 3rem 1rem;
+                max-width: 1000px;
+                margin: 0 auto;
+                width: 100%;
+            }
+
+            .achievements-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 1.5rem;
+            }
+
+            .achievement-card {
+                background: var(--card-bg);
+                border-radius: 12px;
+                padding: 1.5rem;
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+                backdrop-filter: blur(8px);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                transition: transform 0.3s ease;
+            }
+
+            .achievement-card:hover {
+                transform: translateY(-5px);
+            }
+
+            .achievement-icon {
+                font-size: 2rem;
+                color: var(--accent);
+            }
+
+            .achievement-info h4 {
+                font-size: 1.1rem;
+                margin-bottom: 0.5rem;
+                color: #fff;
+            }
+
+            .achievement-info p {
+                color: var(--light);
+                font-size: 0.9rem;
+            }
+
+            /* ========== BUTTONS ========== */
+            .btn-hero {
+                display: inline-block;
+                font-weight: 600;
+                padding: 0.8rem 2rem;
+                border-radius: 50px;
+                text-decoration: none;
+                transition: all 0.3s ease;
+                border: none;
+                cursor: pointer;
+            }
+
+            .btn-hero-main {
+                background: linear-gradient(90deg, var(--primary), var(--secondary));
+                color: #fff;
+                box-shadow: 0 0 12px rgba(168, 85, 247, 0.5);
+            }
+
+            .btn-hero-alt {
+                border: 2px solid var(--primary);
+                color: #fff;
+                background: transparent;
+            }
+
+            .btn-hero-main:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 0 20px rgba(236, 72, 153, 0.7);
+                background: linear-gradient(90deg, #9333ea, #db2777);
+                color: #fff !important;
+            }
+
+            .btn-hero-alt:hover {
+                background: linear-gradient(90deg, rgba(168, 85, 247, 0.2), rgba(236, 72, 153, 0.2));
+                box-shadow: 0 0 10px rgba(168, 85, 247, 0.4);
+                transform: translateY(-3px);
+                color: #fff !important;
+            }
+
+            /* ========== UNITY CANVAS CONTAINER ========== */
+            .unity-game-container {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin: 2rem 0;
+                padding: 0 1rem;
+            }
+
+            #unity-container {
+                position: relative !important;
+                width: 100% !important;
+                max-width: 960px !important;
+                margin: 0 auto !important;
+                left: auto !important;
+                top: auto !important;
+                transform: none !important;
+            }
+
+            #unity-canvas {
+                width: 100% !important;
+                height: auto !important;
+                max-width: 960px !important;
+                border-radius: 12px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+                display: block;
+                margin: 0 auto;
+            }
+
+            .unity-desktop {
+                position: relative !important;
+                left: auto !important;
+                top: auto !important;
+                transform: none !important;
+            }
+
+            /* ========== FOOTER ========== */
+            .footer {
+                background: var(--darker);
+                color: #fff;
+                text-align: center;
+                padding: 3rem 1rem;
+                margin-top: auto;
+                width: 100%;
+            }
+
+            .footer-logo {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 0.5rem;
+                margin-bottom: 1rem;
+            }
+
+            .footer-logo img {
+                width: 45px;
+                height: 45px;
+                border-radius: 50%;
+                object-fit: contain;
+            }
+
+            .footer-logo h2 {
+                font-size: 1.3rem;
+                font-weight: 700;
+                margin: 0;
+                color: #fff;
+            }
+
+            .footer-logo .highlight {
+                background: linear-gradient(90deg, var(--primary), var(--secondary));
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+            }
+
+            .footer-nav {
+                display: flex;
+                justify-content: center;
+                gap: 2rem;
+                margin: 1rem 0;
+                padding: 0;
+                list-style: none;
+                flex-wrap: wrap;
+            }
+
+            .footer-nav a {
+                color: #fff;
+                text-decoration: none;
+                font-size: 1rem;
+                transition: color 0.3s;
+            }
+
+            .footer-nav a:hover {
+                color: #e272ff;
+            }
+
+            .footer hr {
+                border: 0;
+                border-top: 1px solid rgba(255, 255, 255, 0.2);
+                margin: 1.5rem auto;
+                width: 80%;
+            }
+
+            .footer-text {
+                max-width: 700px;
+                margin: 0 auto 1.5rem auto;
+                font-size: 0.9rem;
+                line-height: 1.6;
+                color: #bbb;
+            }
+
+            .footer-social {
+                display: flex;
+                justify-content: center;
+                gap: 1.5rem;
+            }
+
+            .footer-social a {
+                color: #fff;
+                font-size: 1.5rem;
+                transition: color 0.3s;
+            }
+
+            .footer-social a:hover {
+                color: #e272ff;
+            }
+
+            /* ========== LEADERBOARD STYLES ========== */
+            .leaderboard-section {
+                padding: 3rem 1rem;
+                max-width: 1000px;
+                margin: 0 auto;
+                width: 100%;
+            }
+
+            .leaderboard-container {
+                background: var(--card-bg);
+                border-radius: 15px;
+                padding: 2rem;
+                backdrop-filter: blur(8px);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                margin-bottom: 2rem;
+                min-height: 400px;
+                display: flex;
+                flex-direction: column;
+            }
+
+            .leaderboard-header {
+                display: grid;
+                grid-template-columns: 80px 1fr 120px 100px;
+                gap: 1rem;
+                padding: 1rem 1.5rem;
+                background: rgba(168, 85, 247, 0.1);
+                border-radius: 10px;
+                margin-bottom: 1rem;
+                font-weight: 600;
+                color: var(--light);
+                border: 1px solid rgba(168, 85, 247, 0.3);
+            }
+
+            .leaderboard-scores {
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .leaderboard-item {
+                display: grid;
+                grid-template-columns: 80px 1fr 120px 100px;
+                gap: 1rem;
+                padding: 1rem 1.5rem;
+                background: rgba(255, 255, 255, 0.05);
+                border-radius: 10px;
+                transition: all 0.3s ease;
+                border: 1px solid transparent;
+            }
+
+            .leaderboard-item:hover {
+                background: rgba(168, 85, 247, 0.1);
+                transform: translateX(5px);
+                border-color: rgba(168, 85, 247, 0.3);
+            }
+
+            .leaderboard-item.top-1 {
+                background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 215, 0, 0.05));
+                border: 2px solid gold;
+                box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+            }
+
+            .leaderboard-item.top-2 {
+                background: linear-gradient(135deg, rgba(192, 192, 192, 0.2), rgba(192, 192, 192, 0.05));
+                border: 2px solid silver;
+            }
+
+            .leaderboard-item.top-3 {
+                background: linear-gradient(135deg, rgba(205, 127, 50, 0.2), rgba(205, 127, 50, 0.05));
+                border: 2px solid #cd7f32;
+            }
+
+            .rank {
+                font-weight: 700;
+                font-size: 1.1rem;
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+            }
+
+            .rank-medal {
+                font-size: 1.3rem;
+            }
+
+            .player-name {
+                font-weight: 500;
+                color: #fff;
+            }
+
+            .player-score {
+                font-weight: 600;
+                color: var(--accent);
+                text-align: right;
+            }
+
+            .player-stage {
+                text-align: center;
+                color: var(--light);
+                font-size: 0.9rem;
+            }
+
+            .leaderboard-loading,
+            .leaderboard-error {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 1rem;
+                padding: 3rem;
+                text-align: center;
+            }
+
+            .leaderboard-loading .spinner-border {
+                width: 3rem;
+                height: 3rem;
+                color: var(--primary);
+            }
+
+            .leaderboard-error i {
+                font-size: 3rem;
+                color: #ff6b6b;
+                margin-bottom: 1rem;
+            }
+
+            .leaderboard-actions {
+                display: flex;
+                justify-content: center;
+                gap: 1rem;
+                flex-wrap: wrap;
+            }
+
+            /* Responsive Leaderboard */
+            @media (max-width: 768px) {
+                .leaderboard-header {
+                    grid-template-columns: 60px 1fr 80px 60px;
+                    gap: 0.5rem;
+                    padding: 0.8rem 1rem;
+                    font-size: 0.9rem;
+                }
+
+                .leaderboard-item {
+                    grid-template-columns: 60px 1fr 80px 60px;
+                    gap: 0.5rem;
+                    padding: 0.8rem 1rem;
+                    font-size: 0.9rem;
+                }
+
+                .rank {
+                    font-size: 1rem;
+                }
+
+                .player-stage {
+                    font-size: 0.8rem;
+                }
+            }
+
+            @media (max-width: 480px) {
+                .leaderboard-container {
+                    padding: 1rem;
+                }
+
+                .leaderboard-header {
+                    grid-template-columns: 50px 1fr 70px 50px;
+                    font-size: 0.8rem;
+                }
+
+                .leaderboard-item {
+                    grid-template-columns: 50px 1fr 70px 50px;
+                    font-size: 0.8rem;
+                }
+
+                .rank-medal {
+                    font-size: 1.1rem;
+                }
+            }
+
+            /* ===========================
+            RESPONSIVE FIX – INFO CARDS
+            =========================== */
+
+            /* Tablet (rapi 2 kolom) */
+            @media (max-width: 992px) {
+                .info-cards-wrapper {
+                    display: grid !important;
+                    grid-template-columns: repeat(2, 1fr);
+                    gap: 20px !important;
+                    justify-items: center;
+                }
+
+                .info-card {
+                    width: 100%;
+                    max-width: 280px;
+                    margin: 0 auto;
+                }
+            }
+
+            /* =======================================================
+            FIX DESKTOP — 4 CARD DALAM 1 BARIS (TIDAK GRID)
+            ======================================================= */
+            @media (min-width: 992px) {
+
+                .info-cards-wrapper {
+                    display: flex !important;
+                    justify-content: center !important;
+                    align-items: stretch !important;
+                    gap: 24px !important;
+                    width: 100%;
+                }
+
+                .info-card {
+                    flex: 1 1 0 !important;
+                    max-width: 260px !important;
+                    /* ukuran ideal */
+                    min-height: 130px !important;
+                    padding: 24px !important;
+                    margin: 0 !important;
+                }
+            }
+
+
+            /* Mobile (1 kolom rapi, tidak melorot panjang) */
+            @media (max-width: 576px) {
+                .info-cards-wrapper {
+                    display: grid !important;
+                    grid-template-columns: 1fr;
+                    gap: 14px !important;
+                    padding: 0 20px;
+                }
+
+                .info-card {
+                    width: 100%;
+                    max-width: 100%;
+                    margin: 0 auto;
+                    padding: 18px 14px !important;
+                }
+            }
+
+            /* ===========================
+            RESPONSIVE FIX – GAME BUTTONS
+            =========================== */
+
+            @media (max-width: 992px) {
+                .game-controls {
+                    display: grid !important;
+                    grid-template-columns: repeat(2, 1fr);
+                    gap: 14px !important;
+                    width: 100%;
+                    max-width: 640px;
+                    margin: 20px auto 0;
+                }
+
+                .game-controls a,
+                .game-controls button {
+                    width: 100% !important;
+                }
+            }
+
+            /* =========================================
+            MOBILE COMPACT (2 GRID, SMALL + RAPIH)
+            ========================================= */
+            @media (max-width: 576px) {
+
+                /* Wrapper tetap 2 grid */
+                .info-cards-wrapper {
+                    display: grid !important;
+                    grid-template-columns: repeat(2, 1fr) !important;
+                    gap: 16px !important;
+                    /* 🟣 spacing lebih lega */
+                    padding: 0 18px !important;
+                    /* 🟣 padding kiri kanan */
+                    margin-top: 14px !important;
+                    margin-bottom: 14px !important;
+                }
+
+                /* Card lebih lega, lebih proporsional */
+                .info-card {
+                    padding: 14px 12px !important;
+                    /* 🟣 padding agak besar */
+                    border-radius: 12px !important;
+                    min-height: 100px !important;
+                    /* 🟣 ukuran card lebih enak */
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    /* 🟣 teks tetap centered dan rapi */
+                }
+
+                .info-card h3 {
+                    font-size: 0.78rem !important;
+                    margin-bottom: 4px !important;
+                }
+
+                .info-card p {
+                    font-size: 0.9rem !important;
+                    line-height: 1.25 !important;
+                }
+
+                /* Buttons — sedikit lega juga */
+                .game-controls {
+                    display: grid !important;
+                    grid-template-columns: repeat(2, 1fr) !important;
+                    gap: 14px !important;
+                    /* 🟣 spacing tombol */
+                    max-width: 360px !important;
+                    margin-top: 16px !important;
+                    padding: 0 18px;
+                }
+
+                .game-controls a,
+                .game-controls button {
+                    padding: 12px 14px !important;
+                    /* 🟣 lebih lega */
+                    font-size: 0.85rem !important;
+                    border-radius: 14px !important;
+                }
+            }
+
+            /* =========================================
+            MOBILE COMPACT — INFO CARD 2 GRID
+            ========================================= */
+            @media (max-width: 576px) {
+
+                .info-cards-wrapper {
+                    display: grid !important;
+                    grid-template-columns: repeat(2, 1fr) !important;
+                    gap: 12px !important;
+                    width: 100%;
+                    padding: 0 14px !important;
+                }
+
+                .info-card {
+                    min-height: 90px !important;
+                    padding: 12px 8px !important;
+                    border-radius: 12px !important;
+                    text-align: center;
+                }
+
+                .info-card h3 {
+                    font-size: 0.75rem !important;
+                    margin-bottom: 4px !important;
+                }
+
+                .info-card p {
+                    font-size: 0.85rem !important;
+                    line-height: 1.2 !important;
+                }
+            }
+
+
+
+            /* ===========================
+            PERBAIKI JARAK DENGAN CANVAS
+            =========================== */
+
+            @media (max-width: 768px) {
+                .unity-game-container {
+                    margin-bottom: 10px !important;
+                }
+
+                .game-info {
+                    margin-top: 10px !important;
+                    margin-bottom: 10px !important;
+                }
+            }
+
+        </style>
+    </head>
+
+    <body class="text-white">
+        <!-- ========== BACKGROUND BLUR ========== -->
+        <div class="blur-biru"></div>
+        <div class="blur-pink"></div>
+
+        <!-- ========== NAVBAR ========== -->
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top custom-navbar">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">
+                    <img src="images/icon-logo.png" alt="Laminar Flow">
+                    <span class="brand-text">Laminar <span class="flow">Flow</span></span>
+                </a>
+                <button class="navbar-toggler glass-toggle" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="game.html">Games</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="about.html">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="news.html">News</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="showcase.html">Showcase</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+
+        <!-- ========== GAME CONTAINER ========== -->
+        <div class="game-container">
+
+            <div class="game-header fade-in-up">
+                <h1 class="game-title">DefensePlants</h1>
+                <p class="game-subtitle">Protect your garden from invading pests in this strategic tower defense game
+                    with unique plant-based mechanics</p>
+
+                <!-- ========== GAME PLAY AREA ========== -->
+                <section class="unity-game-container" id="play">
+                    <div id="unity-container" class="unity-desktop fade-in-up">
+                        <canvas id="unity-canvas" width=960 height=600 tabindex="-1"></canvas>
+                        <div id="unity-loading-bar">
+                            <div id="unity-logo"></div>
+                            <div id="unity-progress-bar-empty">
+                                <div id="unity-progress-bar-full"></div>
+                            </div>
+                        </div>
+                        <div id="unity-warning"> </div>
+                        <div id="unity-footer">
+                            <div id="unity-logo-title-footer"></div>
+                            <div id="unity-fullscreen-button"></div>
+                            <div id="unity-build-title">DefensePlants</div>
+                        </div>
+                    </div>
+                </section>
+
+
+                <div class="info-cards-wrapper">
+                    <div class="info-card">
+                        <h3>Genre</h3>
+                        <p>Tower Defense</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>Platform</h3>
+                        <p>Web Browser</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>Players</h3>
+                        <p>Single Player</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>Status</h3>
+                        <p>Available Now</p>
+                    </div>
+                </div>
+
+
+                <div class="game-controls fade-in-up delay-3">
+                    <a href="game.html" class="btn-hero btn-hero-alt me-2">
+                        <i class="fas fa-arrow-left me-2"></i>Back to Games
+                    </a>
+                    <a href="#play" class="btn-hero btn-hero-main me-2">
+                        <i class="fas fa-play me-2"></i>Play Now
+                    </a>
+                    <button class="control-btn" id="toggleSound">
+                        <i class="fas fa-volume-up"></i> Sound
+                    </button>
+                    <button class="control-btn" id="toggleFullscreen">
+                        <i class="fas fa-expand"></i> Fullscreen
+                    </button>
+                </div>
+            </div>
+
+            <!-- ========== GAME FEATURES ========== -->
+            <section class="features-section">
+                <h2 class="section-title">Game Features</h2>
+                <div class="features-grid">
+                    <div class="feature-card fade-in-up">
+                        <div class="feature-icon">
+                            <i class="fas fa-seedling"></i>
+                        </div>
+                        <h3>Unique Plant Types</h3>
+                        <p>Discover and unlock various plant species, each with special abilities to defend your garden
+                            from different types of pests.</p>
+                    </div>
+                    <div class="feature-card fade-in-up delay-1">
+                        <div class="feature-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <h3>Achievement System</h3>
+                        <p>Earn badges and rewards as you progress through increasingly challenging levels and master
+                            different strategies.</p>
+                    </div>
+                    <div class="feature-card fade-in-up delay-2">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3>Progressive Difficulty</h3>
+                        <p>Start with simple mechanics and gradually unlock more complex gameplay elements as you
+                            advance through the game.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ========== LEADERBOARD SECTION ========== -->
+            <section class="leaderboard-section">
+                <h2 class="section-title">🏆 Top Players</h2>
+
+                <div class="leaderboard-container">
+                    <!-- Loading State -->
+                    <div id="leaderboard-loading" class="leaderboard-loading">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <p>Loading leaderboard...</p>
+                    </div>
+
+                    <!-- Leaderboard Content -->
+                    <div id="leaderboard-content" class="leaderboard-content" style="display: none;">
+                        <div class="leaderboard-header">
+                            <span>Rank</span>
+                            <span>Player</span>
+                            <span>Score</span>
+                            <span>Stage</span>
+                        </div>
+                        <div id="leaderboard-scores" class="leaderboard-scores">
+                            <!-- Scores will be populated by JavaScript -->
+                        </div>
+                    </div>
+
+                    <!-- Error State -->
+                    <div id="leaderboard-error" class="leaderboard-error" style="display: none;">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <p>Failed to load leaderboard. Please try again later.</p>
+                        <button class="btn-hero btn-hero-alt" onclick="loadLeaderboard()">
+                            <i class="fas fa-redo"></i> Retry
+                        </button>
+                    </div>
+                </div>
+
+                <div class="leaderboard-actions">
+                    <button class="btn-hero btn-hero-main" onclick="refreshLeaderboard()">
+                        <i class="fas fa-sync-alt"></i> Refresh
+                    </button>
+                    <button class="btn-hero btn-hero-alt" onclick="viewFullLeaderboard()">
+                        <i class="fas fa-external-link-alt"></i> View Full Leaderboard
+                    </button>
+                </div>
+            </section>
+
+
+            <!-- ========== ACHIEVEMENTS ========== -->
+            <section class="achievements-section">
+                <h2 class="section-title">Achievements</h2>
+                <div class="achievements-grid">
+                    <div class="achievement-card fade-in-up">
+                        <div class="achievement-icon">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <div class="achievement-info">
+                            <h4>First Sprout</h4>
+                            <p>Complete the tutorial level</p>
+                        </div>
+                    </div>
+                    <div class="achievement-card fade-in-up delay-1">
+                        <div class="achievement-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="achievement-info">
+                            <h4>Garden Guardian</h4>
+                            <p>Defend against 100 pests</p>
+                        </div>
+                    </div>
+                    <div class="achievement-card fade-in-up delay-2">
+                        <div class="achievement-icon">
+                            <i class="fas fa-crown"></i>
+                        </div>
+                        <div class="achievement-info">
+                            <h4>Master Gardener</h4>
+                            <p>Complete all levels with 3 stars</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ========== FOOTER ========== -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-logo">
+                    <img src="images/icon-logo.png" alt="Laminar Flow">
+                    <h2>Laminar <span class="highlight">Flow</span></h2>
+                </div>
+
+                <ul class="footer-nav">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="game.html">Games</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="news.html">News</a></li>
+                    <li><a href="showcase.html">Showcase</a></li>
+                </ul>
+
+                <hr>
+
+                <p class="footer-text">
+                    Creating immersive and meaningful gaming experiences that inspire and educate players worldwide.
+                </p>
+
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-discord"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+
+                <p class="footer-text mt-3">
+                    &copy; 2023 Laminar Flow. All rights reserved.
+                </p>
+            </div>
+        </footer>
+
+        <!-- ========== SCRIPTS ========== -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">
+        </script>
+
+        <script>
+            // Unity Game Loader
+            var canvas = document.querySelector("#unity-canvas");
+
+            function unityShowBanner(msg, type) {
+                var warningBanner = document.querySelector("#unity-warning");
+
+                function updateBannerVisibility() {
+                    warningBanner.style.display = warningBanner.children.length ? 'block' : 'none';
+                }
+                var div = document.createElement('div');
+                div.innerHTML = msg;
+                warningBanner.appendChild(div);
+                if (type == 'error') div.style = 'background: red; padding: 10px;';
+                else {
+                    if (type == 'warning') div.style = 'background: yellow; padding: 10px;';
+                    setTimeout(function() {
+                        warningBanner.removeChild(div);
+                        updateBannerVisibility();
+                    }, 5000);
+                }
+                updateBannerVisibility();
+            }
+
+            var buildUrl = "Build";
+            var loaderUrl = buildUrl + "/plantbaru1.loader.js";
+            var config = {
+                arguments: [],
+                dataUrl: buildUrl + "/plantbaru1.data",
+                frameworkUrl: buildUrl + "/plantbaru1.framework.js",
+                codeUrl: buildUrl + "/plantbaru1.wasm",
+                streamingAssetsUrl: "StreamingAssets",
+                companyName: "DefaultCompany",
+                productName: "DefensePlants",
+                productVersion: "1.0",
+                showBanner: unityShowBanner,
+            };
+
+            if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+                var meta = document.createElement('meta');
+                meta.name = 'viewport';
+                meta.content =
+                    'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
+                document.getElementsByTagName('head')[0].appendChild(meta);
+                document.querySelector("#unity-container").className = "unity-mobile";
+                canvas.className = "unity-mobile";
+            } else {
+                // Make canvas responsive and centered
+                function resizeCanvas() {
+                    const container = document.querySelector('.unity-game-container');
+                    const containerWidth = container.clientWidth;
+                    const aspectRatio = 960 / 600;
+
+                    if (containerWidth < 960) {
+                        canvas.style.width = '100%';
+                        canvas.style.height = (containerWidth / aspectRatio) + 'px';
+                    } else {
+                        canvas.style.width = '960px';
+                        canvas.style.height = '600px';
+                    }
+                }
+
+                window.addEventListener('resize', resizeCanvas);
+                resizeCanvas();
+            }
+
+            document.querySelector("#unity-loading-bar").style.display = "block";
+
+            var script = document.createElement("script");
+            script.src = loaderUrl;
+            script.onload = () => {
+                createUnityInstance(canvas, config, (progress) => {
+                    document.querySelector("#unity-progress-bar-full").style.width = 100 * progress + "%";
+                }).then((unityInstance) => {
+                    document.querySelector("#unity-loading-bar").style.display = "none";
+
+                    // Fullscreen functionality
+                    document.querySelector("#unity-fullscreen-button").onclick = () => {
+                        unityInstance.SetFullscreen(1);
+                    };
+
+                    // Custom fullscreen button
+                    document.getElementById('toggleFullscreen').addEventListener('click', () => {
+                        unityInstance.SetFullscreen(1);
+                    });
+
+                }).catch((message) => {
+                    alert(message);
+                });
+            };
+
+            document.body.appendChild(script);
+
+            // Sound toggle functionality
+            document.getElementById('toggleSound').addEventListener('click', function() {
+                const icon = this.querySelector('i');
+                if (icon.classList.contains('fa-volume-up')) {
+                    icon.classList.remove('fa-volume-up');
+                    icon.classList.add('fa-volume-mute');
+                    this.innerHTML = '<i class="fas fa-volume-mute"></i> Sound Off';
+                } else {
+                    icon.classList.remove('fa-volume-mute');
+                    icon.classList.add('fa-volume-up');
+                    this.innerHTML = '<i class="fas fa-volume-up"></i> Sound';
+                }
+                // Here you would typically trigger the sound toggle in the Unity game
+            });
+
+            // Scroll animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in-up');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.feature-card, .achievement-card').forEach(el => {
+                observer.observe(el);
+            });
+
+            // Leaderboard Configuration
+            // const LEADERBOARD_API_URL = 'https://your-app.vercel.app/api/scores/top';
+            // const FULL_LEADERBOARD_URL = 'https://your-app.vercel.app/leaderboard';
+
+            // Ganti URL-nya
+            const LEADERBOARD_API_URL = 'http://localhost/defenseplants/api/get-scores.php';
+            const FULL_LEADERBOARD_URL = 'http://localhost/defenseplants/api/leaderboard.php';
+
+            // Load leaderboard when page loads
+            document.addEventListener('DOMContentLoaded', function() {
+                loadLeaderboard();
+            });
+
+            async function loadLeaderboard() {
+                const loadingEl = document.getElementById('leaderboard-loading');
+                const contentEl = document.getElementById('leaderboard-content');
+                const errorEl = document.getElementById('leaderboard-error');
+
+                // Show loading, hide others
+                loadingEl.style.display = 'flex';
+                contentEl.style.display = 'none';
+                errorEl.style.display = 'none';
+
+                try {
+                    const response = await fetch(LEADERBOARD_API_URL);
+
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+
+                    const scores = await response.json();
+                    displayLeaderboard(scores);
+
+                } catch (error) {
+                    console.error('Failed to load leaderboard:', error);
+                    showLeaderboardError();
+                }
+            }
+
+            function displayLeaderboard(scores) {
+                const loadingEl = document.getElementById('leaderboard-loading');
+                const contentEl = document.getElementById('leaderboard-content');
+                const scoresContainer = document.getElementById('leaderboard-scores');
+
+                // Clear previous scores
+                scoresContainer.innerHTML = '';
+
+                if (!scores || scores.length === 0) {
+                    scoresContainer.innerHTML = `
+            <div class="leaderboard-item" style="text-align: center; grid-template-columns: 1fr;">
+                <div style="padding: 2rem; color: var(--light);">
+                    <i class="fas fa-trophy" style="font-size: 2rem; margin-bottom: 1rem;"></i>
+                    <p>No scores yet. Be the first to play!</p>
+                </div>
+            </div>
+            `;
+                } else {
+                    // Display scores
+                    scores.forEach((score, index) => {
+                        const rank = index + 1;
+                        const medal = getMedalForRank(rank);
+                        const rankClass = rank <= 3 ? `top-${rank}` : '';
+                        const scoreItem = document.createElement('div');
+                        scoreItem.className = `leaderboard-item ${rankClass} fade-in-up`;
+                        scoreItem.style.animationDelay = `${index
+                * 0.1}s`;
+                        scoreItem.innerHTML = ` <div class="rank">
+                ${medal ? `<span class="rank-medal">${medal}</span>` : ''}
+                <span>#${rank}</span>
+                </div>
+                <div class="player-name">${escapeHtml(score.playerName)}</div>
+                <div class="player-score">${score.score.toLocaleString()}</div>
+                <div class="player-stage">Stage ${score.stage || 1}</div>
+                `;
+
+                        scoresContainer.appendChild(scoreItem);
+                    });
+                }
+
+                // Show content, hide loading
+                loadingEl.style.display = 'none';
+                contentEl.style.display = 'block';
+            }
+
+            function showLeaderboardError() {
+                const loadingEl = document.getElementById('leaderboard-loading');
+                const contentEl = document.getElementById('leaderboard-content');
+                const errorEl = document.getElementById('leaderboard-error');
+
+                loadingEl.style.display = 'none';
+                contentEl.style.display = 'none';
+                errorEl.style.display = 'flex';
+            }
+
+            function refreshLeaderboard() {
+                loadLeaderboard();
+            }
+
+            function viewFullLeaderboard() {
+                window.open(FULL_LEADERBOARD_URL, '_blank');
+            }
+
+            function getMedalForRank(rank) {
+                switch (rank) {
+                    case 1:
+                        return '🥇';
+                    case 2:
+                        return '🥈';
+                    case 3:
+                        return '🥉';
+                    default:
+                        return '';
+                }
+            }
+
+            function escapeHtml(unsafe) {
+                return unsafe
+                    .replace(/&/g, "&amp;")
+                    .replace(/</g, "&lt;").replace(/>/g, "&gt;")
+                    .replace(/"/g, "&quot;")
+                    .replace(/'/g, "&#039;");
+            }
+
+            // Auto-refresh leaderboard every 30 seconds
+            setInterval(loadLeaderboard, 30000);
+
+        </script>
+    </body>
+
+</html>

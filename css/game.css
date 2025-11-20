@@ -1,11 +1,267 @@
-
-/* game.css - parallax, game catalog, video wrapper */
-.game-detail-hero, .game-parallax {
-  position: relative; height: 75vh; background-position:center; background-size:cover; background-attachment: fixed;
+/* Reset dan variabel warna */
+:root {
+    --primary: #a855f7;
+    --secondary: #ec4899;
+    --accent: #4ade80;
+    --dark: #0d0c1d;
+    --light: #c4b5fd;
+    --card-bg: rgba(255, 255, 255, 0.05);
 }
-.game-detail { padding: 5rem 1rem; }
-.video-wrapper { position: relative; width:100%; aspect-ratio:16/9; overflow:hidden; border-radius:15px; }
-.video-wrapper video, .video-wrapper img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; border-radius:15px; transition:all .6s ease; }
-.btn-hero { display:inline-block; font-weight:600; padding:.8rem 2rem; border-radius:50px; color:#fff; text-decoration:none; }
-.btn-hero-main{ background: linear-gradient(90deg,#a855f7,#ec4899); }
-.game-sidebar { background: rgba(255,255,255,0.05); border-radius:15px; padding:2rem; backdrop-filter: blur(8px); }
+
+body {
+    background-color: var(--dark);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* ========== HERO PARALLAX SECTION ========== */
+.game-hero {
+    position: relative;
+    height: 80vh;
+    background: linear-gradient(rgba(13, 12, 29, 0.7), rgba(13, 12, 29, 0.7)),
+        url("../images/paralax.png") center/cover fixed no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+    color: #fff;
+}
+
+.game-hero .content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    padding: 0 20px;
+}
+
+.game-hero h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    background: linear-gradient(90deg, #a855f7, #ec4899);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.game-hero p {
+    font-size: 1.2rem;
+    color: #c4b5fd;
+    margin-bottom: 2rem;
+}
+
+/* ========== GAME CATALOGUE ========== */
+.game-catalogue {
+    padding: 5rem 1rem;
+    position: relative;
+    z-index: 2;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 3rem;
+    position: relative;
+    display: inline-block;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, #a855f7, #ec4899);
+    border-radius: 2px;
+}
+
+/* ========== GAME GRID ========== */
+.game-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.game-card {
+    background: var(--card-bg);
+    border-radius: 15px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    position: relative;
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.game-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(168, 85, 247, 0.2);
+}
+
+.game-thumb {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.game-card:hover .game-thumb {
+    transform: scale(1.05);
+}
+
+.game-info {
+    padding: 1.5rem;
+}
+
+.game-info h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #fff;
+}
+
+.game-info p {
+    color: #c4b5fd;
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+}
+
+.game-info strong {
+    color: #fff;
+}
+
+/* ========== GAME ACTIONS ========== */
+.game-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 1.5rem;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.btn-play,
+.btn-details {
+    padding: 0.7rem 1.5rem;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+    color: #fff;
+    transition: all 0.3s ease;
+    flex: 1;
+    text-align: center;
+}
+
+.btn-play {
+    background: linear-gradient(90deg, #4ade80, #16a34a);
+    box-shadow: 0 0 12px rgba(74, 222, 128, 0.4);
+}
+
+.btn-play:hover {
+    background: linear-gradient(90deg, #22c55e, #15803d);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(74, 222, 128, 0.6);
+}
+
+.btn-details {
+    background: linear-gradient(90deg, #a855f7, #ec4899);
+    box-shadow: 0 0 12px rgba(236, 72, 153, 0.4);
+}
+
+.btn-details:hover {
+    background: linear-gradient(90deg, #9333ea, #db2777);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(236, 72, 153, 0.6);
+}
+
+/* ========== BACKGROUND ELEMENTS ========== */
+.blur-biru {
+    position: fixed;
+    top: -10%;
+    right: -10%;
+    width: 40%;
+    height: 40%;
+    background: radial-gradient(circle, rgba(168, 85, 247, 0.3) 0%, rgba(168, 85, 247, 0) 70%);
+    filter: blur(40px);
+    z-index: 1;
+    pointer-events: none;
+}
+
+.blur-pink {
+    position: fixed;
+    bottom: -10%;
+    left: -10%;
+    width: 40%;
+    height: 40%;
+    background: radial-gradient(circle, rgba(236, 72, 153, 0.3) 0%, rgba(236, 72, 153, 0) 70%);
+    filter: blur(40px);
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* ========== RESPONSIVE DESIGN ========== */
+@media (max-width: 1200px) {
+    .game-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .game-hero h1 {
+        font-size: 3rem;
+    }
+
+    .game-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .game-hero {
+        height: 60vh;
+    }
+
+    .game-hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .game-hero p {
+        font-size: 1rem;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .game-catalogue {
+        padding: 3rem 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .game-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 0 1rem;
+    }
+
+    .game-hero h1 {
+        font-size: 2rem;
+    }
+
+    .game-actions {
+        flex-direction: column;
+    }
+
+    .btn-play,
+    .btn-details {
+        width: 100%;
+    }
+}

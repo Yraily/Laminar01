@@ -1,12 +1,391 @@
-
-/* index.css - hero & featured (minimal derived from conv) */
-.hero-parallax, .game-parallax, .showcase-hero {
-  /* kept in base generally, override here if needed */
+/* ============================================
+   HERO PARALLAX SECTION
+============================================ */
+.hero-parallax {
+    position: relative;
+    height: 100vh;
+    background: url("../images/paralax.png") center/cover fixed no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
 }
-.featured-section { color: #fff; }
-.featured-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; justify-items:center; }
-.featured-card { position: relative; width:320px; height:400px; border-radius:20px; overflow:hidden; background:#111; transition:transform .4s ease; }
-.featured-thumb{ width:100%; height:100%; object-fit:cover; transition:transform .5s ease; }
-.featured-info{ position:absolute; bottom:0; left:0; right:0; background: linear-gradient(180deg, rgba(13,12,29,0) 0%, rgba(13,12,29,0.95) 90%); padding:1.5rem; transform:translateY(100%); opacity:0; transition:transform .4s ease, opacity .4s ease; }
-.featured-card:hover .featured-info{ transform:translateY(0); opacity:1; }
-.btn-featured{ background: linear-gradient(90deg, #a855f7, #ec4899); color:white; padding:.4rem 1rem; border-radius:9999px; text-decoration:none; }
+
+.hero-parallax .overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(rgba(13, 12, 29, 0.7),
+            rgba(13, 12, 29, 0.85));
+    z-index: 1;
+}
+
+.hero-parallax .container {
+    position: relative;
+    z-index: 2;
+}
+
+/* HERO BUTTONS */
+.btn-hero,
+.btn-hero:hover,
+.btn-hero:focus,
+.btn-hero:active {
+    color: #fff !important;
+    text-decoration: none !important;
+}
+
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.btn-hero {
+    display: inline-block;
+    font-weight: 600;
+    padding: 0.8rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+/* Hero Main Button */
+.btn-hero-main {
+    background: linear-gradient(90deg, #a855f7, #ec4899);
+    color: #fff;
+    box-shadow: 0 0 12px rgba(168, 85, 247, 0.5);
+}
+
+.btn-hero-main:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 20px rgba(236, 72, 153, 0.7);
+    background: linear-gradient(90deg, #9333ea, #db2777);
+}
+
+/* Hero Outline Button */
+.btn-hero-alt {
+    border: 2px solid #a855f7;
+    color: #fff;
+    background: transparent;
+}
+
+.btn-hero-alt:hover {
+    background: linear-gradient(90deg, rgba(168, 85, 247, 0.2),
+            rgba(236, 72, 153, 0.2));
+    box-shadow: 0 0 10px rgba(168, 85, 247, 0.4);
+    transform: translateY(-3px);
+}
+
+/* Mobile Hero Tweaks */
+@media (max-width: 576px) {
+    .hero-parallax h1 {
+        font-size: 2rem;
+    }
+
+    .hero-parallax p {
+        font-size: 1rem;
+    }
+
+    .btn-hero {
+        padding: 0.6rem 1.4rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* ============================================
+   FEATURED GAMES - RESPONSIVE GRID
+============================================ */
+.featured-section {
+    color: #fff;
+}
+
+/* 🖥 DESKTOP - 3 grid BESAR, gap rapat */
+.featured-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    justify-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.featured-card {
+    position: relative;
+    width: 100%;
+    height: 380px;
+    /* BESAR untuk desktop */
+    border-radius: 16px;
+    overflow: hidden;
+    background: #111;
+    box-shadow: 0 0 20px rgba(168, 85, 247, 0.1);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    cursor: pointer;
+}
+
+/* Hover Soft */
+.featured-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 30px rgba(168, 85, 247, 0.4);
+}
+
+.featured-thumb {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease, opacity 0.4s ease;
+}
+
+.featured-card:hover .featured-thumb {
+    transform: scale(1.02);
+    opacity: 0.9;
+}
+
+/* Featured Info */
+.featured-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(180deg,
+            rgba(13, 12, 29, 0) 0%,
+            rgba(13, 12, 29, 0.95) 90%);
+    padding: 1rem;
+    transform: translateY(100%);
+    opacity: 0;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.featured-card:hover .featured-info {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.featured-info h3 {
+    font-size: 1rem;
+    margin-bottom: 0.4rem;
+}
+
+.featured-info p {
+    font-size: 0.8rem;
+    color: #ddd;
+    margin-bottom: 0.3rem;
+}
+
+.btn-featured {
+    display: inline-block;
+    margin-top: 0.6rem;
+    background: linear-gradient(90deg, #a855f7, #ec4899);
+    color: white;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 0.4rem 1rem;
+    border-radius: 9999px;
+    font-size: 0.8rem;
+}
+
+/* 📱 TABLET - Tetap 3 grid (compact) */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .featured-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+    }
+
+    .featured-card {
+        height: 280px;
+        /* Compact untuk tablet */
+    }
+}
+
+/* 📱 MOBILE - 1 grid, Card KOTAK (aspect-ratio 1/1) */
+@media (max-width: 767px) {
+    .featured-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        max-width: 300px;
+    }
+
+    .featured-card {
+        height: 300px;
+        /* KOTAK - aspect ratio mendekati 1:1 */
+        aspect-ratio: 1/1;
+    }
+
+    .featured-info h3 {
+        font-size: 0.9rem;
+    }
+
+    .featured-info p {
+        font-size: 0.75rem;
+    }
+}
+
+/* ============================================
+   SHOWCASE SECTION - RESPONSIVE GRID
+============================================ */
+.showcase-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.showcase-card {
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.showcase-card:hover {
+    transform: scale(1.05);
+}
+
+.showcase-card img {
+    width: 100%;
+    height: 250px;
+    /* BESAR untuk desktop */
+    object-fit: cover;
+}
+
+/* 📱 TABLET - Tetap 3 grid (compact) */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .showcase-grid {
+        gap: 1rem;
+    }
+
+    .showcase-card img {
+        height: 180px;
+        /* Compact untuk tablet */
+    }
+}
+
+/* 📱 MOBILE - 1 grid */
+@media (max-width: 767px) {
+    .showcase-grid {
+        grid-template-columns: 1fr;
+        max-width: 300px;
+    }
+
+    .showcase-card img {
+        height: 200px;
+        /* Sesuaikan untuk mobile */
+    }
+}
+
+/* ============================================
+   UPDATE CARD FIX (Text Overflow Solution)
+============================================ */
+.update-card {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 20px;
+    background: rgba(20, 20, 40, 0.55);
+    border: 1px solid rgba(120, 120, 200, 0.25);
+    border-radius: 20px;
+    padding: 22px;
+    margin-bottom: 2rem;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+}
+
+/* Content wrapper dengan text control */
+.update-content {
+    flex: 1;
+    max-width: 100%;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+}
+
+.update-content h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.update-content p {
+    font-size: 0.95rem;
+    margin-bottom: 10px;
+    color: #ddd;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    line-height: 1.4;
+}
+
+.update-content .date {
+    font-size: 0.85rem;
+    color: #bbb;
+    margin-top: 8px;
+}
+
+/* MOBILE FIX - Lebih Responsif */
+@media (max-width: 576px) {
+    .update-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 16px;
+        margin-bottom: 1.5rem;
+    }
+
+    .update-card img {
+        width: 100% !important;
+        height: 160px !important;
+        margin-bottom: 12px;
+    }
+
+    .update-content {
+        text-align: center;
+        padding-top: 0;
+    }
+
+    .update-content h3 {
+        font-size: 1.1rem;
+        -webkit-line-clamp: 2;
+    }
+
+    .update-content p {
+        font-size: 0.9rem;
+        -webkit-line-clamp: 3;
+        margin-bottom: 8px;
+        color: #ddd;
+        line-height: 1.5;
+        width: 100%;
+        text-align: left;
+    }
+}
+
+/* TABLET FIX */
+@media (min-width: 577px) and (max-width: 991px) {
+    .update-card {
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .update-card img {
+        width: 35% !important;
+        height: 140px !important;
+    }
+
+    .update-content h3 {
+        font-size: 1.1rem;
+        -webkit-line-clamp: 2;
+    }
+
+    .update-content p {
+        font-size: 0.9rem;
+        -webkit-line-clamp: 3;
+        color: #ddd;
+        line-height: 1.5;
+        width: 100%;
+        text-align: left;
+    }
+}

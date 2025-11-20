@@ -56,6 +56,259 @@ body {
     color: #c084fc !important;
 }
 
+/* FLOATING EDGE SIDEBAR */
+.edge-sidebar {
+    position: fixed;
+    top: 50%;
+    left: -230px;
+    /* hidden */
+    transform: translateY(-50%);
+    width: 200px;
+    padding: 20px;
+
+    background: rgba(20, 20, 20, 0.85);
+    backdrop-filter: blur(12px);
+    border-radius: 0 20px 20px 0;
+
+    box-shadow: 4px 0 20px rgba(0, 0, 0, 0.25);
+
+    transition: left 0.35s ease;
+    z-index: 2000;
+}
+
+.edge-sidebar.active {
+    left: 0;
+}
+
+.edge-sidebar ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.edge-sidebar li {
+    margin: 15px 0;
+}
+
+.edge-sidebar a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 17px;
+    transition: .2s;
+}
+
+.edge-sidebar a:hover {
+    opacity: .7;
+}
+
+/* ========================= */
+/* NAVBAR + HAMBURGER GLASS */
+/* ========================= */
+
+.custom-navbar {
+    z-index: 4000;
+    background: rgba(10, 10, 25, 0.9) !important;
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(148, 163, 253, 0.25);
+}
+
+.custom-navbar .navbar-brand {
+    letter-spacing: 0.12em;
+}
+
+/* Glass hamburger for mobile */
+.glass-toggle {
+    border-radius: 999px;
+    border: 1px solid rgba(168, 85, 247, 0.7);
+    background: radial-gradient(circle at top left,
+            rgba(168, 85, 247, 0.45),
+            rgba(15, 23, 42, 0.9));
+    padding: 6px 10px;
+    backdrop-filter: blur(14px);
+    box-shadow: 0 0 12px rgba(168, 85, 247, 0.6);
+}
+
+.glass-toggle .navbar-toggler-icon {
+    filter: brightness(0) invert(1);
+    /* bikin putih */
+    width: 22px;
+    height: 22px;
+}
+
+
+
+.edge-icon i {
+    font-size: 1.1rem;
+    color: white;
+    /* tambahkan warna */
+    opacity: 0.9;
+    /* biar lembut */
+}
+
+/* ========================= */
+/*      EDGE GLASS SIDEBAR   */
+/* ========================= */
+
+.edge-sidebar {
+    position: fixed;
+    top: 50%;
+    left: 30px;
+    transform: translate(-130%, -50%);
+    /* hidden state */
+
+    width: 150px;
+    height: 80vh;
+
+    padding: 16px 16px 20px;
+    border-radius: 24px;
+    background: linear-gradient(135deg,
+            rgba(15, 23, 42, 0.9),
+            rgba(24, 18, 45, 0.95));
+    backdrop-filter: blur(20px);
+
+    border: 1px solid rgba(168, 85, 247, 0.7);
+    /* box-shadow:
+        0 0 22px rgba(168, 85, 247, 0.6),
+        0 0 40px rgba(56, 189, 248, 0.2); */
+
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    opacity: 0;
+    pointer-events: none;
+
+    transition: transform 0.3s ease-out, opacity 0.25s ease-out;
+    z-index: 3500;
+}
+
+/* Aktif: slide in + bounce */
+.edge-sidebar.active {
+    transform: translate(0, -50%);
+    opacity: 1;
+    pointer-events: auto;
+    animation: edgeBounce 0.35s ease-out;
+}
+
+@keyframes edgeBounce {
+    0% {
+        transform: translate(-140%, -50%);
+    }
+
+    60% {
+        transform: translate(4%, -50%);
+    }
+
+    100% {
+        transform: translate(0, -50%);
+    }
+}
+
+.edge-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 6px;
+    border-bottom: 1px solid rgba(148, 163, 253, 0.25);
+}
+
+.edge-title {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #e5e7eb;
+}
+
+/* GRID 2 KOLOM - MENU ITEM */
+.edge-grid {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+
+.edge-item {
+    text-decoration: none;
+    color: #e5e7eb;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+
+    padding: 10px 6px;
+    border-radius: 18px;
+
+    background: radial-gradient(circle at top,
+            rgba(79, 70, 229, 0.35),
+            rgba(15, 23, 42, 0.95));
+    border: 1px solid rgba(129, 140, 248, 0.45);
+
+    /* box-shadow: 0 0 16px rgba(129, 140, 248, 0.55); */
+    transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+}
+
+.edge-item:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow:
+        0 0 22px rgba(168, 85, 247, 0.9),
+        0 0 30px rgba(56, 189, 248, 0.25);
+    border-color: rgba(244, 114, 182, 0.7);
+}
+
+.edge-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 999px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: radial-gradient(circle at top left,
+            rgba(244, 114, 182, 0.4),
+            rgba(30, 64, 175, 0.9));
+}
+
+.edge-icon i {
+    font-size: 1.3rem;
+}
+
+.edge-label {
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+/* ============== RESPONSIVE BEHAVIOR ============== */
+
+/* Mobile & Tablet: show hamburger, hide desktop nav */
+@media (max-width: 991px) {
+    #edgeToggle {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .navbar-nav.d-lg-flex {
+        display: none !important;
+    }
+}
+
+/* Desktop: hide hamburger & edge sidebar */
+@media (min-width: 992px) {
+    #edgeToggle {
+        display: none !important;
+    }
+
+    .edge-sidebar {
+        display: none !important;
+    }
+}
+
+
 .blur-biru {
     position: absolute;
     width: 100%;
@@ -387,7 +640,7 @@ body {
 .game-parallax {
     position: relative;
     height: 350px;
-    background: url("../images/showcase1.png") bottom/cover fixed no-repeat;
+    background: url("../images/baner.png") bottom/cover fixed no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -957,5 +1210,34 @@ body {
 
     .game-detail .game-gallery {
         justify-content: center;
+    }
+}
+
+/* ================================
+   FORCE HAMBURGER SHOW ON MOBILE
+   ================================ */
+@media (max-width: 991px) {
+    #edgeToggle {
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        z-index: 3000 !important;
+
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Pastikan menu desktop hilang */
+    nav ul.d-lg-flex {
+        display: none !important;
+    }
+}
+
+/* ================================
+   HIDE HAMBURGER ON DESKTOP
+   ================================ */
+@media (min-width: 992px) {
+    #edgeToggle {
+        display: none !important;
     }
 }
