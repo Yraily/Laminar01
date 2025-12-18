@@ -134,7 +134,7 @@ body {
     position: relative;
     height: 60vh;
     background: linear-gradient(rgba(13, 12, 29, 0.7), rgba(13, 12, 29, 0.7)),
-        url("images/paralax.png") center/cover fixed no-repeat;
+        url("../images/paralax.png") center/cover fixed no-repeat;
     display: flex;
     justify-content: center;
     align-items: center;
