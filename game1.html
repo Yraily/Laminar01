@@ -449,17 +449,16 @@
             var buildUrl = "Build";
             var loaderUrl = buildUrl + "/Land of Floria.loader.js";
             var config = {
-                dataUrl: buildUrl + "/Land of Floria.data.br",
-                frameworkUrl: buildUrl + "/Land of Floria.framework.js.br",
-                codeUrl: buildUrl + "/Land of Floria.wasm.br",
+                arguments: [],
+                dataUrl: buildUrl + "/Land of Floria.data",
+                frameworkUrl: buildUrl + "/Land of Floria.framework.js",
+                codeUrl: buildUrl + "/Land of Floria.wasm",
                 streamingAssetsUrl: "StreamingAssets",
                 companyName: "DefaultCompany",
-                productName: "Project - TA - Defense Plant",
+                productName: "DefensePlants",
                 productVersion: "1.0",
                 showBanner: unityShowBanner,
             };
-
-            document.getElementById('unity-build-title').textContent = "Project - TA - Defense Plant";
 
             if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
                 var meta = document.createElement('meta');
